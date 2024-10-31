@@ -1,0 +1,28 @@
+.nav-bar ul{
+    list-style: none;
+    width: fit-content;
+}
+
+.nav-bar ul li{
+    display: inline-block;
+    padding-inline: 1.2rem;
+    padding-bottom: 0.8rem;
+}
+
+.nav-bar ul li a{
+    text-decoration: none;
+    color: var(--primary-black);
+}
+
+.active{
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.active a{
+    color: var(--primary-color) !important;
+    font-weight: 500;
+}
+
+.nav-bar ul li:not(.active):hover{
+    border-bottom: 2px solid var(--primary-black);
+}

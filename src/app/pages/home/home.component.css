@@ -1,0 +1,69 @@
+.hero-section h4{
+    font-size: 4rem;
+    line-height: 4rem;
+}
+
+.hero-section h1{
+    font-size: 9rem;
+    line-height: 7rem;
+    margin-left: -5px;
+}
+
+.hero-section h1 span{
+    color: var(--primary-color);
+}
+
+.hero-section h6{
+    font-size: 1.5rem;
+}
+
+.hero-section{
+    padding-bottom: 5rem;
+}
+
+.intro-section{
+    margin-top: 8rem;
+}
+
+.intro-section .heading p{
+    color: var(--secondry-black);
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.ellipse{
+    border: 2px solid var(--secondry-color);
+    width: 1rem;
+    height: 1rem;
+}
+
+.line{
+    height: 6rem;
+    border: 1px solid var(--secondry-color);
+    width: 0;
+}
+
+.intro-section .details h4, .intro-section .details h2{
+    font-weight: 600;
+}
+
+.intro-section .details h4{
+    font-size: 1.5rem;
+    color: var(--secondry-black);
+}
+
+.intro-section .details h2{
+    margin-top: 1rem;
+    font-size: 2.5rem;
+}
+
+.intro-section .details p{
+    color: var(--secondry-black);
+    opacity: 0.8;
+    font-size: 0.9rem;
+    padding-inline: 5rem;
+}
+
+.border-right{
+    border-right: 1px solid var(--secondry-black);
+}

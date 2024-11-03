@@ -1,3 +1,4 @@
+<!-- Hero Section -->
 <div class="container py-5">
     <div class="row justify-content-center hero-section align-items-center pt-4">
         <div class="col-6 d-flex flex-wrap ">
@@ -10,6 +11,7 @@
         </div>
     </div>
 </div>
+<!-- Intro Section -->
 <div class="mx-5 border-bottom"></div>
 <div class="container intro-section text-center mb-5">
     <div class="row heading">
@@ -39,5 +41,35 @@
             <p>Where you can publish your ideas, literary arts, reviews, and everything in your mind. Users can engage with other other's posts and connect with them by following their profiles.</p>
             <button class="mt-4 btn outline-btn">Go to Ledgers' Corner</button>
         </div>
+    </div>
+</div>
+<!-- Book Fair Sub Section -->
+<div class="container-fluid sub-section">
+    <div class="row align-items-center justify-content-between heading px-5 mb-3">
+        <h2 class="m-0 fw-semibold">Book Fair</h2>
+        <button class="btn outline-colored-btn text-black-only">Go to Bookf Fair <i class="fa-solid fa-chevron-right ps-2"></i></button>
+    </div>
+    <div class="row content gy-4 mt-4 pb-4">
+        <div class="col-2 px-4" *ngFor="let num of iterate">
+            <app-book-showcase [book]="sampleBook"></app-book-showcase>
+        </div>
+    </div>
+</div>
+<!-- Ledgers' Corner Sub Section -->
+<div class="container-fluid sub-section">
+    <div class="row align-items-center justify-content-between heading px-5 mb-3">
+        <h2 class="m-0 fw-semibold">Ledgers' Corner</h2>
+        <button class="btn outline-colored-btn text-black-only">Go to Ledgers' Corner <i class="fa-solid fa-chevron-right ps-2"></i></button>
+    </div>
+    <div class="row content gy-4 mt-4 pb-4">
+        <div class="col-6 px-4" >
+            <app-post></app-post>
+        </div>
+    </div>
+</div>
+<img class="w-100 footer-img z-0 position-absolute opacity-50" src="assets/images/name-only-logo.svg" alt="">
+<div class="">
+    <div class="footer position-relative z-1">
+
     </div>
 </div>

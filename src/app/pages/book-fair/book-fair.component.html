@@ -1,0 +1,86 @@
+<!-- Search bar and other components -->
+<div class="row mt-5 mx-5">
+    <div class="col-8 d-flex">
+        <div class="search-bar w-50 py-2 px-3">
+            <i class="bi bi-search"></i>
+            <input class="w-75 ps-3" type="text" placeholder="Search collection of papers">
+            <select class="ms-2 border-0 bg-transparent" name="" id="">
+                <option value="" selected>Book Title</option>
+                <option value="">Author</option>
+                <option value="">ISBN</option>
+            </select>
+        </div>
+        <button class="ms-3 btn primary-btn btn-search px-5">search</button>
+        <button class="ms-2 btn outline-btn"><i class="bi bi-funnel"></i> Filter</button>
+    </div>
+    <div class="col-4 d-flex justify-content-end pe-4">
+        <button class="btn outline-btn px-3"><div class="rounded-circle position-absolute cart-item-count d-none">00</div><i class="fa-solid fa-cart-shopping"></i></button>
+        <button class="btn outline-btn ms-2 px-3"><i class="fa-solid fa-bookmark"></i></button>
+    </div>
+</div>
+<!-- Carousel -->
+<div id="carousel" class="mx-5 px-2 carousel slide mt-4 mb-5" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="0" class="rounded-circle active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carousel" data-bs-slide-to="1" class="rounded-circle" aria-label="Slide 2"></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="assets/images/book-fair-banner-1.png" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/images/book-fair-banner-3.png" class="d-block w-100" alt="...">
+      </div>
+    </div>
+</div>
+<div class="categories d-flex justify-content-evenly mx-5 py-4 px-3">
+    <button class="btn fw-medium me-4" [style]="'color:#' + category.color +'; background-color:#'+ category.color +'2a;' " *ngFor="let category of categoryList">{{category.name}}</button>
+</div>
+<!-- Featured Sub Section -->
+<div class="sub-section">
+    <div class="d-flex justify-content-between heading border-bottom pb-3 px-5">
+        <h2 class="m-0 fw-semibold">Featured</h2>
+        <button class="btn outline-colored-btn text-black-only">Show more <i class="fa-solid fa-chevron-right ps-2"></i></button>
+    </div>
+    <div class="row content gy-4 mt-2 pb-4">
+        <div class="col-2 px-4" *ngFor="let num of iterate">
+            <app-book-showcase class="book-showcase" [book]="sampleBook"></app-book-showcase>
+        </div>
+    </div>
+</div>
+<!-- Best Selling Sub Section -->
+<div class="sub-section">
+    <div class="d-flex justify-content-between heading border-bottom pb-3 px-5">
+        <h2 class="m-0 fw-semibold">Best Selling</h2>
+        <button class="btn outline-colored-btn text-black-only">Show more <i class="fa-solid fa-chevron-right ps-2"></i></button>
+    </div>
+    <div class="row content gy-4 mt-2 pb-4">
+        <div class="col-2 px-4" *ngFor="let num of iterate">
+            <app-book-showcase class="book-showcase" [book]="sampleBook"></app-book-showcase>
+        </div>
+    </div>
+</div>
+<!-- New Arrivals Sub Section -->
+<div class="sub-section">
+    <div class="d-flex justify-content-between heading border-bottom pb-3 px-5">
+        <h2 class="m-0 fw-semibold">New Arrivals</h2>
+        <button class="btn outline-colored-btn text-black-only">Show more <i class="fa-solid fa-chevron-right ps-2"></i></button>
+    </div>
+    <div class="row content gy-4 mt-2 pb-4">
+        <div class="col-2 px-4" *ngFor="let num of iterate">
+            <app-book-showcase class="book-showcase" [book]="sampleBook"></app-book-showcase>
+        </div>
+    </div>
+</div>
+<!-- Top Rated Sub Secion -->
+<div class="sub-section">
+    <div class="d-flex justify-content-between heading border-bottom pb-3 px-5">
+        <h2 class="m-0 fw-semibold">Top Rated</h2>
+        <button class="btn outline-colored-btn text-black-only">Show more <i class="fa-solid fa-chevron-right ps-2"></i></button>
+    </div>
+    <div class="row content gy-4 mt-2 pb-4">
+        <div class="col-2 px-4" *ngFor="let num of iterate">
+            <app-book-showcase class="book-showcase" [book]="sampleBook"></app-book-showcase>
+        </div>
+    </div>
+</div>

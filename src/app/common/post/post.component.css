@@ -1,0 +1,47 @@
+.post-container{
+    background-color: var(--white-shade-1);
+    border: 1px solid #e6eaeb;
+    border-radius: 0.8rem;
+    padding-inline: 2.5rem;
+}
+
+.profile-img-container{
+    width: 4.5rem;
+}
+
+.post-details p{
+    width: fit-content;
+    margin: 0;
+}
+
+.post-details p:last-child{
+    font-size: 0.9rem;
+    color: var(--black-shade-4);
+}
+
+.react img{
+    width: 2rem;
+}
+
+.comment img{
+    width: 2.5rem;
+}
+
+.react:hover, .comment:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Comment's menu icon */
+.fa-ellipsis-vertical{
+    font-size: 1.5rem;
+}
+
+.post-bottom p:first-child{
+    color: var(--black-shade-4);
+    font-size: 0.9rem;
+}
+
+.post-bottom p:not(.post-bottom p:first-child){
+    color: #525962;
+}

@@ -12,6 +12,7 @@
 .nav-bar ul li a{
     text-decoration: none;
     color: var(--primary-black);
+    font-weight: 500;
 }
 
 .active{
@@ -20,7 +21,6 @@
 
 .active a{
     color: var(--primary-color) !important;
-    font-weight: 500;
 }
 
 .nav-bar ul li:not(.active):hover{

@@ -2,7 +2,6 @@
 
 *{
     font-family: "Poppins", serif !important;
-    color: var(--primary-black);
 }
 
 :root{
@@ -10,6 +9,12 @@
     --secondry-color: #33DB8A;
     --primary-black: #222931;
     --secondry-black: #505760;
+    --black-shade-3: #adb4be;
+    --black-shade-4: #78808b;
+    --white-shade-1: #f8f8f9;
+
+    /* Bootsrap font color change to primary-black */
+    --bs-body-color: var(--primary-black) !important;
 }
 
 .border-bottom{
@@ -51,4 +56,12 @@
 .outline-btn:hover{
     background-color: var(--secondry-black) !important;
     color: #FFFFFF !important;
+}
+
+.text-black-only{
+    color: var(--primary-black) !important;
+}
+
+.width-fit-content{
+    width: fit-content !important;
 }

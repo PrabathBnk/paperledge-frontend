@@ -67,3 +67,32 @@
 .border-right{
     border-right: 1px solid var(--secondry-black);
 }
+
+.sub-section .heading h2, .sub-section .heading button{
+    width: fit-content;
+}
+
+.sub-section .heading h2{
+    color: var(--primary-black);
+}
+
+.sub-section{
+    padding-inline: 6rem;
+    margin-top: 15rem;
+}
+
+.sub-section .content{
+    border: 1px solid var(--black-shade-3);
+    border-radius: 2rem;
+}
+
+/* *********Remove this later********* */
+.footer-img{
+    margin-top: 15rem;
+}
+.footer{
+    margin-top: 30rem;
+    height: 25rem;
+    width: 100%;
+    background-color: var(--black-shade-3);
+}

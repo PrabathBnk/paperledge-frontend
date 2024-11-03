@@ -1,0 +1,78 @@
+.search-bar{
+    background-color: var(--white-shade-1);
+    border-radius: 0.7rem;
+    border: 1px solid var(--black-shade-3);
+    color: var(--secondry-black);
+    font-size: 0.9rem;
+}
+
+.search-bar input{
+    border: none;
+    border-right: 1px solid var(--black-shade-3);
+    background-color: transparent;
+
+}
+
+.search-bar input:focus{
+    outline: none;
+}
+
+.search-bar select{
+    width: 20%;
+}
+
+.search-bar select:focus{
+    outline: none;
+}
+
+.btn-search{
+    background-color: var(--secondry-color) !important;
+
+}
+
+.btn-search:hover{
+    background-color: var(--primary-color) !important;
+}
+
+/* Save icon and Cart icon */
+.fa-cart-shopping, .fa-bookmark{
+    font-size: 1.2rem;
+}
+
+.cart-item-count{
+    width: 1.2rem;
+    height: 1.2rem;
+    background-color: var(--primary-color);
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: #fff;
+    padding-top: 0.15rem;
+    margin-left: 0.8rem;
+    margin-top: 0.4rem;
+}
+
+.carousel-indicators button{
+    width: 0.7rem;
+    height: 0.7rem;
+}
+
+.carousel .carousel-item img{
+    border-radius: 1rem;
+}
+
+.categories{
+    border-block: 1px solid var(--black-shade-3);
+}
+
+.categories button{
+    background-color: var(--black-shade-3);
+    font-size: 1rem !important;
+}
+
+.sub-section{
+    margin: 6rem 4rem 1rem;
+}
+
+.book-showcase:hover{
+    transform: scale(1.2) ;
+}

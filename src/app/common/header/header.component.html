@@ -5,9 +5,9 @@
         </div>
         <div class="col-6 nav-bar d-flex justify-content-center">
             <ul class="m-0 p-0">
-                <li class="me-3 active"><a href="">Home</a></li>
-                <li class="me-3"><a href="">Book Fair</a></li>
-                <li><a href="">Ledgers' Corner</a></li>
+                <li class="me-3" [ngClass]="{ active: isHomeActive() }"><a routerLink="" >Home</a></li>
+                <li class="me-3" [ngClass]="{ active: isActive('book-fair') }"><a routerLink="book-fair">Book Fair</a></li>
+                <li><a routerLink="">Ledgers' Corner</a></li>
             </ul>
         </div>
         <div class="col-3 d-flex justify-content-end">

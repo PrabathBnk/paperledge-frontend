@@ -1,0 +1,52 @@
+.main-container{
+    background-color: #eef1f5;
+    border-radius: 0.7rem;
+    transition: transform 0.3s;
+}
+
+.main-container:hover{
+    transform: scale(1.05);
+}
+
+.img-container{
+    background-color: #c3c9d1;
+    border-radius: 1rem;
+}
+
+.img-container img{
+    border-radius: 0.7rem;
+}
+
+.main-container p{
+    margin: 0;
+}
+
+.name{
+    font-size: 0.85rem;
+}
+
+.rating{
+    font-size: 0.7rem;
+}
+
+.dark-black{
+    color: var(--primary-black);
+}
+
+.book-detail{
+    font-size: 0.7rem;
+    color: var(--black-shade-4);
+}
+
+.price p{
+    width: fit-content;
+}
+
+.price p:first-child{
+    font-size: 1.2rem;
+}
+
+.price p:last-child{
+    font-size: 0.8rem;
+    color: var(--black-shade-4);
+}

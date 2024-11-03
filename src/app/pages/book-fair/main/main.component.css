@@ -1,0 +1,21 @@
+.carousel-indicators button{
+    width: 0.7rem;
+    height: 0.7rem;
+}
+
+.carousel .carousel-item img{
+    border-radius: 1rem;
+}
+
+.categories{
+    border-block: 1px solid var(--black-shade-3);
+}
+
+.categories button{
+    background-color: var(--black-shade-3);
+    font-size: 1rem !important;
+}
+
+.sub-section{
+    margin: 6rem 4rem 1rem;
+}

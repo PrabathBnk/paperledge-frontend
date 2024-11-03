@@ -58,10 +58,32 @@
     color: #FFFFFF !important;
 }
 
+.btn-filled-2{
+    background-color: var(--secondry-color) !important;
+
+}
+
+.btn-filled-2:hover{
+    background-color: var(--primary-color) !important;
+}
+
 .text-black-only{
     color: var(--primary-black) !important;
 }
 
 .width-fit-content{
     width: fit-content !important;
+}
+
+.input-field{
+    font-size: 0.9rem;
+    border: 1px solid var(--black-shade-3);
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.35rem;
+}
+
+.input-field:focus{
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px #33db8a6b;
 }

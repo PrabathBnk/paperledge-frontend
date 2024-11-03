@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { BookShowcaseComponent } from "../../common/book-showcase/book-showcase.component";
 import { NgFor } from '@angular/common';
 import { PostComponent } from "../../common/post/post.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [BookShowcaseComponent, NgFor, PostComponent],
+  imports: [BookShowcaseComponent, NgFor, PostComponent, RouterLink],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })

@@ -1,0 +1,37 @@
+body{
+    overflow-y: hidden;
+}
+
+.quick-filter h5{
+    border-bottom: 2px solid var(--black-shade-4);
+}
+
+.rating{
+    color: var(--black-shade-4);
+}
+
+.rating:hover{
+    color: var(--seconday-black);
+    cursor: pointer;
+}
+
+.input-field{
+    width: 45%;
+}
+
+.quick-filter label{
+    font-size: 0.85rem;
+}
+
+.quick-filter{
+    border-right: 1px solid var(--black-shade-3);
+    height: fit-content;
+}
+
+.active{
+    color: var(--primary-color);
+}
+
+.active:hover{
+    color: var(--primary-color);
+}

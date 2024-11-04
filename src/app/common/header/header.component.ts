@@ -10,11 +10,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-
-  constructor() {
-    console.log(this.isActive('localhost'));
-    
-  }
+  public isLogedIn:boolean = true;
 
   public isActive(pageName:string):boolean {
     return (window.location.href).match(pageName) != null;

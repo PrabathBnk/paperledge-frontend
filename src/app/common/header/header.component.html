@@ -5,15 +5,105 @@
         </div>
         <div class="col-6 nav-bar d-flex justify-content-center">
             <ul class="m-0 p-0">
-                <li class="me-3" [ngClass]="{ active: isHomeActive() }"><a routerLink="" >Home</a></li>
-                <li class="me-3" [ngClass]="{ active: isActive('book-fair') }"><a routerLink="book-fair">Book Fair</a></li>
+                <li class="me-3" [ngClass]="{ 'active': isHomeActive() }"><a routerLink="">Home</a></li>
+                <li class="me-3" [ngClass]="{ 'active': isActive('book-fair') }"><a routerLink="book-fair">Book Fair</a>
+                </li>
                 <li><a routerLink="">Ledgers' Corner</a></li>
             </ul>
         </div>
         <div class="col-3 d-flex justify-content-end">
-            <button class="btn primary-btn me-4">Log in</button>
-            <button class="btn outline-colored-btn">Sign up</button>
+            <div [ngClass]="{ 'd-none': isLogedIn }">
+                <button class="btn primary-btn me-4" data-bs-toggle="modal" data-bs-target="#loginModal">Log in</button>
+                <button class="btn outline-colored-btn"  data-bs-toggle="modal" data-bs-target="#signUpModal">Sign up</button>
+            </div>
+            <div class="d-flex align-items-center" [ngClass]="{ 'd-none': !isLogedIn }">
+                <div class="notfication">
+                    <div class="position-absolute rounded-circle"></div>
+                    <i class="fa-regular fa-bell"></i>
+                </div>
+                <div class="dropdown">
+                    <div class="rounded-circle ms-3 overflow-hidden profile-img-container"  data-bs-toggle="dropdown">
+                        <img class="w-100" src="assets/images/sample-user-01.jpg" alt="">
+                    </div>
+                    <ul class="dropdown-menu position-absolute">
+                      <li><a class="dropdown-item" href="#"><i class="fa-regular fa-user me-2"></i> User Details</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-bag me-2"></i> Purchases</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-currency-dollar me-2"></i>Sales</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i> Setting</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
+<!-- Login Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <button type="button" class="btn-close me-1 mt-1" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body col-6 align-self-center d-grid">
+                <img class="w-50 mb-5" src="assets/images/logo-1.png" alt="">
+                <div class="mb-4">
+                    <h3 class="fw-semibold text-center mb-4">Log in to your Account</h3>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                        <label for="email">Email address</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <button class="btn primary-btn py-2 w-50" >Log in</button>
+                <p class="text-center mt-2 text-link">Forgot Password?</p>
+                <p class="text-link-2 text-center mt-4">Don't have an account? <span class="fw-medium " data-bs-target="#signUpModal" data-bs-toggle="modal">Create an account</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Sign up Modal -->
+<div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="signUpModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <button type="button" class="btn-close me-1 mt-1" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body mb-5 col-6 align-self-center d-grid">
+                <img class="w-50 mb-5" src="assets/images/logo-1.png" alt="">
+                <div class="mb-4">
+                    <form action="" class="">
+                        <h3 class="fw-semibold text-center mb-4">Create a New Account</h3>
+                        <div class="d-flex">
+                            <div class="form-floating w-50 mb-3">
+                                <input type="text" class="form-control" id="firstName" placeholder="your first name">
+                                <label for="firstName">First Name</label>
+                            </div>
+                            <div class="form-floating ms-2 w-50 mb-3">
+                                <input type="text" class="form-control" id="lastName" placeholder="your last name">
+                                <label for="lastName">Last Name</label>
+                            </div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="email" placeholder="your email">
+                            <label for="email">Email address</label>
+                        </div>
+                        <!-- Use 'is-invaid' for invalid input fields -->
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="password" placeholder="your password">
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="form-floating">
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="confirm your password">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <div class="invalid-tooltip">Passwords are not matching.</div>                  
+                        </div>
+                    </form>
+                </div>
+                <button class="btn primary-btn mt-2 py-2 w-50" type="submit" >Sign up</button>
+                <p class="text-link-2 text-center mt-4">Already have an account? <span class="fw-medium" data-bs-target="#loginModal" data-bs-toggle="modal">Log in to your account</span></p>
+            </div>
+        </div>
+    </div>
+</div>

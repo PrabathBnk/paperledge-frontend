@@ -11,7 +11,9 @@
     --secondry-black: #505760;
     --black-shade-3: #adb4be;
     --black-shade-4: #78808b;
+    --black-shade-5: #d3d9e1;
     --white-shade-1: #f8f8f9;
+    --red: #F92C58;
 
     /* Bootsrap font color change to primary-black */
     --bs-body-color: var(--primary-black) !important;

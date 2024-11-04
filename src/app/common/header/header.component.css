@@ -26,3 +26,102 @@
 .nav-bar ul li:not(.active):hover{
     border-bottom: 2px solid var(--primary-black);
 }
+
+.profile-img-container{
+    width: 4.5rem;
+}
+
+.profile-img-container:hover{
+    cursor: pointer;
+}
+
+.notfication div{
+    background-color: var(--red);
+    width: 0.5rem;
+    height: 0.5rem;
+    margin-left: 1.7rem;
+    margin-top: 0.8rem;
+}
+
+.notfication .fa-bell{
+    font-size: 1.3rem !important;
+    padding-inline: 1rem;
+    padding-block: 0.8rem;
+}
+
+.notfication{
+    background-color: var(--black-shade-5);
+    width: fit-content;
+    border-radius: 0.7rem;
+    transition: background-color 0.2s;
+}
+
+.notfication:hover{
+    cursor: pointer;
+    background-color: var(--black-shade-3);
+}
+
+.dropdown:hover .dropdown-menu{
+    display: block;
+}
+
+.dropdown-menu{
+    transform: translate(-3.5rem);
+    font-size: 0.85rem;
+}
+
+.dropdown-item:not(.dropdown-menu li:last-child a){
+    margin-bottom: 0.8rem;
+}
+
+.dropdown-item:active{
+    background-color: var(--primary-color);
+}
+
+/* Login Modal */
+.modal{
+    --bs-modal-width: 50%;
+}
+
+.text-link{
+    font-size: 0.9rem;
+    color: var(--black-shade-4);
+    text-decoration: underline;
+}
+
+.text-link:hover{
+    color: var(--primary-black) !important;
+    cursor: pointer;
+}
+
+.text-link-2{
+    font-size: 0.9rem;
+}
+
+.text-link-2 span{
+    color: var(--primary-color) !important;
+}
+
+.text-link-2 span:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.form-control:focus{
+    border-color: var(--primary-color);
+    box-shadow:  0 0 0 5px #11d57042;
+}
+
+.modal img, .modal button{
+    justify-self: center;
+}
+
+#loginModal .modal-body{
+    margin-block: 5rem;
+}
+
+form {
+    --bs-danger: #F92C58;
+    --bs-form-valid-border-color: var(--primary-color);
+}
+/* End log in modal styles */

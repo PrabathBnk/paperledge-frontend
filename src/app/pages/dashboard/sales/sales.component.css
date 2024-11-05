@@ -1,0 +1,63 @@
+.sub-container{
+    border: 1px solid var(--black-shade-3);
+    border-radius: 0.7rem;
+    width: fit-content;
+    padding-right: 4rem !important;
+}
+
+.sub-container p{
+    margin: 0;
+}
+
+.sub-container .heading{
+    font-size: 1rem;
+}
+
+.sub-container .description{
+    color: var(--black-shade-4);
+    font-size: 0.6rem;
+    width: 20rem;
+}
+
+.sub-container .amount{
+    font-size: 2.5rem;
+}
+
+.primary-btn{
+    font-size: 0.9rem !important;
+    padding-inline: 0.8rem 5rem !important;
+}
+
+.container-2{
+    background-color: var(--white-shade-1);
+}
+
+.container-2 .description{
+    width: 15rem !important;
+}
+
+.container-2 .amount{
+    font-size: 3.5rem;
+}
+
+.bi-arrow-up-circle{
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
+.tbl-section td, .tbl-section th{
+    padding-left: 1rem;
+}
+
+.tbl-section table{
+    width: 100%;
+}
+
+.tbl-section{
+    height: 35vh !important;
+    overflow-y: scroll;
+}
+
+.border-end{
+    border-right: 1px solid var(--black-shade-3) !important;
+}

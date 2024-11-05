@@ -6,6 +6,7 @@ import { BrowseComponent } from './pages/book-fair/browse/browse.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UserDetailsComponent } from './pages/dashboard/user-details/user-details.component';
 import { PurchasesComponent } from './pages/dashboard/purchases/purchases.component';
+import { SalesComponent } from './pages/dashboard/sales/sales.component';
 
 export const routes: Routes = [
     {
@@ -42,6 +43,11 @@ export const routes: Routes = [
                 path: "purchases",
                 title: "Purchases",
                 component: PurchasesComponent
+            },
+            {
+                path: "sales",
+                title: "Sales",
+                component: SalesComponent
             }
         ]
     }

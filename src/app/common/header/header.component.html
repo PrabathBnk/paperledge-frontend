@@ -28,7 +28,7 @@
                     <ul class="dropdown-menu position-absolute">
                       <li><a class="dropdown-item" [ngClass]="{ 'active': isActive('user-details') }" href="#" routerLink="dashboard/user-details"><i class="fa-regular fa-user me-2"></i> User Details</a></li>
                       <li><a class="dropdown-item" [ngClass]="{ 'active': isActive('purchases') }" href="#" routerLink="dashboard/purchases"><i class="bi bi-bag me-2"></i> Purchases</a></li>
-                      <li><a class="dropdown-item" href="#"><i class="bi bi-currency-dollar me-2"></i>Sales</a></li>
+                      <li><a class="dropdown-item" [ngClass]="{ active: isActive('sales') }" routerLink="../dashboard/sales" href="#"><i class="bi bi-currency-dollar me-2"></i>Sales</a></li>
                       <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i> Setting</a></li>
                     </ul>
                 </div>

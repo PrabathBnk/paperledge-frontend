@@ -13,6 +13,7 @@
     --black-shade-4: #78808b;
     --black-shade-5: #d3d9e1;
     --white-shade-1: #f8f8f9;
+    --white-shade-2: #efeff2;
     --red: #F92C58;
 
     /* Bootsrap font color change to primary-black */
@@ -88,4 +89,81 @@
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px #33db8a6b;
+}
+
+/* Order Status */
+.order-satatus{
+    font-size: 0.8rem;
+    border-radius: 0.4rem;
+    text-align: center;
+    padding: 0.1rem 1.5rem;
+    font-weight: 500;
+}
+
+.placed{
+    background-color: #FFF7BC;
+    color: #C9AD0F;
+}
+
+.delivered{
+    background-color: #B8FAD6;
+    color: var(--primary-color);
+}
+
+.returned{
+    background-color: #FFDAE2;
+    color: var(--red);
+}
+
+.cancelled{
+    background-color: var(--white-shade-2);
+    color: var(--black-shade-4);
+}
+
+.shipped{
+    background-color: #c5e3ff;
+    color: #0f8ec9;
+}
+
+
+/* Table */
+.tbl-section table{
+    table-layout: fixed;
+}
+
+.tbl-section table th{
+    font-weight: 500;
+    color: var(--black-shade-4);
+    padding-block: 0.7rem;
+    background-color: var(--white-shade-2);
+    border-bottom: 1px solid var(--black-shade-3);
+}
+
+.tbl-section th:first-child{
+    border-top-left-radius: 1rem;
+}
+
+.tbl-section th:last-child{
+    border-top-right-radius: 1rem;
+}
+
+.tbl-section th, .tbl-section td{
+    padding-left: 3rem;
+    font-size: 0.9rem;
+}
+
+.tbl-section{
+    border: 1px solid var(--black-shade-3);
+    border-radius: 1rem;
+    height: 50vh;
+}
+
+.tbl-section tbody td{
+    border-bottom: 1px solid var(--black-shade-5);
+    padding-block: 1rem;
+}
+
+.tbl-section tbody tr:hover td{
+    background-color: var(--white-shade-1);
+    cursor: pointer;
 }

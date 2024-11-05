@@ -1,0 +1,11 @@
+<div class="row mt-4 mx-5">
+    <div class="d-flex pe-4 pt-4 flex-column side-bar">
+        <button [ngClass]="{ active: isActive('user-details') }" routerLink="../dashboard/user-details">User Details</button>
+        <button [ngClass]="{ active: isActive('purchases') }" routerLink="../dashboard/purchases">Purchases</button>
+        <button>Sales</button>
+        <button>Setting</button>
+    </div>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

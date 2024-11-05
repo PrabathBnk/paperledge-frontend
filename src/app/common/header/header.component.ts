@@ -18,6 +18,6 @@ export class HeaderComponent {
 
   // Should change after creating the ledgers-corner component
   public isHomeActive():boolean{
-    return !this.isActive("book-fair");
+    return !this.isActive("book-fair") && !this.isActive("user-details");
   }
 }

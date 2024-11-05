@@ -18,7 +18,7 @@
             </div>
             <div class="d-flex align-items-center" [ngClass]="{ 'd-none': !isLogedIn }">
                 <div class="notfication">
-                    <div class="position-absolute rounded-circle"></div>
+                    <div class="position-absolute rounded-circle d-none"></div>
                     <i class="fa-regular fa-bell"></i>
                 </div>
                 <div class="dropdown">
@@ -26,8 +26,8 @@
                         <img class="w-100" src="assets/images/sample-user-01.jpg" alt="">
                     </div>
                     <ul class="dropdown-menu position-absolute">
-                      <li><a class="dropdown-item" href="#"><i class="fa-regular fa-user me-2"></i> User Details</a></li>
-                      <li><a class="dropdown-item" href="#"><i class="bi bi-bag me-2"></i> Purchases</a></li>
+                      <li><a class="dropdown-item" [ngClass]="{ 'active': isActive('user-details') }" href="#" routerLink="dashboard/user-details"><i class="fa-regular fa-user me-2"></i> User Details</a></li>
+                      <li><a class="dropdown-item" [ngClass]="{ 'active': isActive('purchases') }" href="#" routerLink="dashboard/purchases"><i class="bi bi-bag me-2"></i> Purchases</a></li>
                       <li><a class="dropdown-item" href="#"><i class="bi bi-currency-dollar me-2"></i>Sales</a></li>
                       <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i> Setting</a></li>
                     </ul>

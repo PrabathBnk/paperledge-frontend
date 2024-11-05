@@ -1,0 +1,41 @@
+.order-btn{
+    width: fit-content;
+    background-color: #EFFEF6;
+    border: 1px solid #41E790;
+    border-radius: 0.8rem;
+    padding-right: 2.5rem;
+    transition: background-color 0.2s;
+}
+
+.order-btn:not(.order-btn:last-child) {
+    margin-right: 1rem;
+}
+
+.order-btn div:first-child{
+    background-color: #C3F9DB;
+    color: var(--primary-color);
+    width: 4.3rem;
+    height: 4.3rem;
+    font-size: 1.5rem;
+}
+
+.order-btn div:last-child p:last-child{
+    font-size: 0.6rem;
+    color: var(--black-shade-4);
+}
+
+.order-btn div:last-child p:first-child{
+    font-size: 1.1rem;
+    width: fit-content;
+}
+
+.order-btn:hover{
+    background-color: #C3F9DB;
+    cursor: pointer;
+}
+
+.order-satatus{
+    font-size: 0.8rem !important;
+    text-align: left;
+    width: fit-content;
+}

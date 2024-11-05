@@ -1,0 +1,135 @@
+.sub-section h4{
+    font-size: 1.3rem;
+}
+
+.sub-section button{
+    padding-block: 0.2rem !important;
+}
+
+.content{
+    border: 1px solid var(--black-shade-3);
+    border-radius: 1rem;
+    overflow-y: scroll;
+}
+
+.purchases .content{
+    height: 35vh;
+}
+
+.library .content{
+    height: 25vh;
+}
+
+.content p{
+    margin: 0;
+}
+
+.order{
+    border: 1px solid var(--black-shade-3);
+    border-radius: 0.8rem;
+    transition: box-shadow 0.2s;
+}
+
+.order:hover{
+    cursor: pointer;
+    box-shadow: 0 .2rem .6rem var(--black-shade-5);
+}
+
+#orderId, #price{
+    font-size: 1.1rem;
+}
+
+#orderDate{
+    font-size: 0.75rem;
+    color: var(--black-shade-4);
+}
+
+#estDate{
+    font-size: 0.85rem;
+}
+
+.order-status{
+    width: fit-content;
+    justify-self: end;
+}
+
+/* User Details */
+.user-detail-container{
+    background-color: var(--white-shade-1);
+    border: 1px solid var(--black-shade-5);
+    border-radius: 1rem;
+}
+
+.profile-picture{
+    overflow: hidden;
+    justify-self: center;
+    width: 40%;
+    cursor: pointer;
+}
+
+#name{
+    font-size: 1.4rem;
+    margin-bottom: -0.3rem !important;
+}
+
+#username{
+    font-size: 1rem;
+    color: var(--black-shade-4);
+}
+
+.account-details .number{
+    font-size: 2rem;
+    margin-bottom: -0.6rem !important;
+}
+
+.account-details p{
+    text-align: center;
+    margin: 0;
+    font-weight: 600;
+    color: var(--secondry-black);
+}
+
+.account-details p:not(.number){
+    font-size: 0.85rem;
+}
+
+.account-details div:first-child{
+    border-right: 1px solid var(--black-shade-3);
+}
+
+.table tr:last-child td{
+    border-bottom: none;
+}
+
+.table tr td{
+    background-color: transparent;
+    font-size: 0.9rem;
+}
+
+.table tr td:first-child{
+    color: var(--black-shade-4);
+}
+
+.user-detail-container .outline-btn{
+    width: fit-content;
+    justify-self: center;
+    margin-top: 2.5rem;
+    padding-inline: 5rem !important;
+}
+
+.edit-overlay{
+    width: 12.1rem;
+    height: 12.1rem;
+    background-color: #22293162;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.edit-overlay .fa-pencil{
+    color: #ffffff;
+    font-size: 2rem;
+}
+
+.profile-picture:hover .edit-overlay{
+    opacity: 1;
+}

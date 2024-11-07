@@ -78,6 +78,7 @@
     width: fit-content !important;
 }
 
+/* Input Field */
 .input-field{
     font-size: 0.9rem;
     border: 1px solid var(--black-shade-3);

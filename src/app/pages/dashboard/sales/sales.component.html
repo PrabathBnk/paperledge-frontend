@@ -62,7 +62,7 @@
         <div class="d-flex justify-content-between pb-2 border-bottom">
             <h4 class="fw-semibold m-0">Books</h4>
             <div>
-                <button class="btn primary-btn me-3">+ Add Book</button>
+                <button class="btn primary-btn me-3" data-bs-toggle="modal" data-bs-target="#addNewBook">+ Add Book</button>
                 <button class="btn outline-btn">View All <i class="fa-solid fa-chevron-right ps-2"></i></button>
             </div>
         </div>
@@ -88,6 +88,99 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+    </div>
+</div>
+<!-- Add New Book Modal -->
+<div class="modal fade" id="addNewBook" tabindex="-1" aria-labelledby="addNewBookTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="m-0">Add New Book</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body col-6 w-100 mt-4">
+                <form>
+                    <!-- Line 01 -->
+                    <div class="d-flex mb-4">
+                        <div class="form-floating  w-50 ">
+                            <input type="text" class="form-control" id="title" placeholder="book title">
+                            <label for="title">Title</label>
+                        </div>
+                        <div class="form-floating w-50  ms-2">
+                            <input type="text" class="form-control" id="isbn" placeholder="book isbn">
+                            <label for="isbn">ISBN</label>
+                        </div>
+                        <select class="form-select w-25  ms-2">
+                            <option selected disabled>Genre</option>
+                            <option value="GEN001">Fiction</option>
+                            <option value="GEN002">Educational</option>
+                            <option value="GEN003">Novel</option>
+                        </select>
+                    </div>
+                    <!-- Line 02 -->
+                    <div class="d-flex mb-4">
+                        <div class="form-floating w-50 ">
+                            <input type="text" class="form-control" id="author" placeholder="book author">
+                            <label for="author">Author</label>
+                        </div>
+                        <div class="form-floating w-50  ms-2">
+                            <input type="text" class="form-control" id="publication" placeholder="book publication">
+                            <label for="publication">Pulication</label>
+                        </div>
+                    </div>
+                    <div class="d-flex mb-4">
+                        <div class="form-floating w-25">
+                            <input type="number" class="form-control" id="year" placeholder="book year">
+                            <label for="year">Year</label>
+                        </div>
+                        
+                        <div class="form-floating w-50 ms-2">
+                            <input type="number" class="form-control" id="price" placeholder="book price">
+                            <label for="price">Price</label>
+                        </div>
+                        <div class="form-floating w-50 ms-2">
+                            <input type="number" class="form-control" id="discount" placeholder="book discount">
+                            <label for="discount">Discount</label>
+                        </div>
+                    </div>
+                    <!-- Line 03 -->
+                    <div class="d-flex mb-4">
+                        <select class="form-select w-25">
+                            <option selected disabled>Mode</option>
+                            <option value="HARD">Hard Metirial</option>
+                            <option value="SOFT">Soft Meterial (PDF/DOC)</option>
+                        </select>
+                        <div class="form-floating w-50 ms-2">
+                            <input type="number" class="form-control" id="discount" placeholder="book discount">
+                            <label for="discount">Discount</label>
+                        </div>
+                    </div>
+                    <!-- Line 05 -->
+                    <div class="d-flex">
+                        <div class="form-floating w-75 pe-4">
+                            <textarea class="form-control h-100"  placeholder="book description" id="description"></textarea>
+                            <label for="description">Description</label>
+                        </div>
+                        <div class="d-flex w-50">
+                            <div class="image-picker w-50">
+                                <input type="file" class="d-none" (change)="setImage($event)" id="imagePicker" accept=".png, .jpeg, .jpg">
+                                <label class="text-center d-flex flex-column h-100  pt-4" for="imagePicker">
+                                    <i class="bi bi-file-earmark-image"></i>
+                                    <p class="px-4">Upload image for your book. Make sure it is less than 5MB.</p>
+                                </label>
+                            </div>
+                            <div class="image-container d-flex justify-content-center ms-3 w-50 d-flex ">
+                                <img class="h-100" src="" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn outline-btn" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn primary-btn">Save Book</button>
+            </div>        
         </div>
     </div>
 </div>

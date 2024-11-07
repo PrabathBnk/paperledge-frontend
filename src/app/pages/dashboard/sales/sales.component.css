@@ -23,7 +23,7 @@
     font-size: 2.5rem;
 }
 
-.primary-btn{
+.sub-container .primary-btn{
     font-size: 0.9rem !important;
     padding-inline: 0.8rem 5rem !important;
 }
@@ -60,4 +60,51 @@
 
 .border-end{
     border-right: 1px solid var(--black-shade-3) !important;
+}
+
+/* Add New Book Modal */
+#addNewBook .modal-dialog{
+    max-width: 55vw !important;
+}
+
+#addNewBook .modal-body{
+    padding: 0 2rem 2rem;
+}
+
+/*Remove Arraw of Number Input*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number]{
+    -moz-appearance: textfield;
+}
+/* ----- */
+
+.image-picker label .bi{
+    font-size: 3rem;
+}
+
+.image-picker label p{
+    font-size: 0.65rem;
+}
+
+.image-picker label{
+    color: var(--primary-color);
+    background-color: #EFFEF6;
+    border-radius: 0.8rem;
+    border: 1px dashed var(--primary-color);
+}
+
+.image-picker label:hover{
+    cursor: pointer;
+}
+
+.image-container{
+    overflow: hidden;
+    height: 12rem;
+    background-color: var(--white-shade-2);
+    border-radius: 0.8rem;
 }

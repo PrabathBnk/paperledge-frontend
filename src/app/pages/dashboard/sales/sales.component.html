@@ -66,8 +66,7 @@
                 <button class="btn outline-btn">View All <i class="fa-solid fa-chevron-right ps-2"></i></button>
             </div>
         </div>
-        <h6 class="m-0 mt-3 ps-3 pb-2">Top Selling Books</h6>
-        <div class="tbl-section mb-3">
+        <div class="tbl-section mb-3 mt-4">
             <table>
                 <thead>
                     <tr>
@@ -79,12 +78,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>#BK0003</td>
-                        <td>Sample Book Name</td>
-                        <td>2024</td>
-                        <td>Fiction</td>
-                        <td>LKR.000.00</td>
+                    <tr *ngFor="let book of userBookList">
+                        <td>{{book.id}}</td>
+                        <td>{{book.title}}</td>
+                        <td>{{book.year}}</td>
+                        <td>{{book.genre.name}}</td>
+                        <td>LKR {{book.price.toFixed(2)}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -113,9 +112,7 @@
                         </div>
                         <div class="form-floating w-25 ms-2">
                             <select class="form-select" id="genre" aria-label="genre" [(ngModel)]="bookModel.genre.id" formControlName="genre">
-                                <option value="GEN001">Fiction</option>
-                                <option value="GEN002">Educational</option>
-                                <option value="GEN003">Novel</option>
+                                <option *ngFor="let genre of genreList" value="{{genre.id}}">{{genre.name}}</option>
                             </select>
                             <label for="genre">Genre <span class="text-danger">*</span></label>
                         </div>
@@ -190,3 +187,5 @@
         </div>
     </div>
 </div>
+
+

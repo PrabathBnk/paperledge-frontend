@@ -1,21 +1,21 @@
-import { NgClass } from '@angular/common';
+import { NgClass, NgFor } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sales',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, NgFor],
   templateUrl: './sales.component.html',
   styleUrl: './sales.component.css'
 })
-export class SalesComponent {
-  //TODO Set Genres
-
+export class SalesComponent implements OnInit{
   public imageFieldText = "Upload image for your book. Make sure it is less than 5MB.";
   public imageFile:any = null;
   public imagePath:String = "";
+  public genreList:any;
+  public userBookList:any;
 
   public bookModel = {
       id : null,
@@ -42,6 +42,19 @@ export class SalesComponent {
   }
 
   constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    //Get all genres
+    this.http.get("http://localhost:8080/genre/all").subscribe((res) => {
+      this.genreList = res;
+    });
+
+    //Get all books by the user
+    this.http.get("http://localhost:8080/book/filter/owner-user?ownerUserId=PL240001").subscribe((res) => {
+      this.userBookList = res;
+    });
+
+  }
 
   //Set image to the image view
   setImage(event: Event):void {

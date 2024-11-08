@@ -113,3 +113,9 @@ input[type=number]{
     font-size: 0.8rem;
     color: var(--black-shade-4);
 }
+
+/* Book Details Modal */
+.modal-header span{
+    color: var(--black-shade-4);
+    font-size: 1rem;
+}

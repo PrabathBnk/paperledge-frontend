@@ -47,10 +47,14 @@
 
 .tbl-section td, .tbl-section th{
     padding-left: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .tbl-section table{
     width: 100%;
+    table-layout: fixed;
 }
 
 .tbl-section{
@@ -63,7 +67,7 @@
 }
 
 /* Add New Book Modal */
-#addNewBook .modal-dialog{
+#addNewBook .modal-dialog, #bookDetails .modal-dialog{
     max-width: 55vw !important;
 }
 
@@ -118,4 +122,12 @@ input[type=number]{
 .modal-header span{
     color: var(--black-shade-4);
     font-size: 1rem;
+}
+
+.delete-btn{
+    background-color: var(--red) !important;
+}
+
+.delete-btn:hover{
+    background-color: #ff5277 !important;
 }

@@ -1,7 +1,7 @@
-import { NgClass, NgFor } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sales',
@@ -17,29 +17,30 @@ export class SalesComponent implements OnInit{
   public genreList:any;
   public userBookList:any;
 
-  public bookModel = {
-      id : null,
-      title: null,
-      isbn: null,
-      price: null,
-      discount: null,
-      year: null,
-      quantity: null,
-      mode: null,
-      description: null,
-      genre: {
-        id: null
-      },
-      author: {
-        name: null
-      },
-      publication: {
-        name: null
-      },
-      ownerUser: {
-        id: "PL240001"
-      }
-  }
+  public empptyBookModel:any = {
+    id : null,
+    title: null,
+    isbn: null,
+    price: null,
+    discount: null,
+    year: null,
+    quantity: null,
+    mode: null,
+    description: null,
+    genre: {
+      id: null
+    },
+    author: {
+      name: null
+    },
+    publication: {
+      name: null
+    },
+    ownerUser: {
+      id: "PL240001"
+    }
+}
+  public bookModel:any = this.empptyBookModel;
 
   constructor(private http: HttpClient) {}
 
@@ -50,10 +51,13 @@ export class SalesComponent implements OnInit{
     });
 
     //Get all books by the user
-    this.http.get("http://localhost:8080/book/filter/owner-user?ownerUserId=PL240001").subscribe((res) => {
-      this.userBookList = res;
-    });
+    this.loadBooks();
+  }
 
+  loadBooks():void {
+      this.http.get("http://localhost:8080/book/filter/owner-user?ownerUserId=PL240001").subscribe((res) => {
+        this.userBookList = res;
+      });
   }
 
   //Set image to the image view
@@ -83,29 +87,7 @@ export class SalesComponent implements OnInit{
     this.imageFile = null;
     this.imagePath = "";
     this.imageFieldText = "Upload image for your book. Make sure it is less than 5MB.";
-    this.bookModel = {
-      id : null,
-      title: null,
-      isbn: null,
-      price: null,
-      discount: null,
-      year: null,
-      quantity: null,
-      mode: null,
-      description: null,
-      genre: {
-        id: null
-      },
-      author: {
-        name: null
-      },
-      publication: {
-        name: null
-      },
-      ownerUser: {
-        id: "PL240001"
-      }
-    }
+    this.bookModel = this.empptyBookModel;
   }
 
   //Form Control
@@ -130,7 +112,6 @@ export class SalesComponent implements OnInit{
     description: new FormControl(this.bookModel.description),
     image: new FormControl("", Validators.required)
   });
-
   
   onSubmit():void {
     const formData:FormData = new FormData();
@@ -138,13 +119,46 @@ export class SalesComponent implements OnInit{
     formData.append("image", this.imageFile);
 
     this.http.post("http://localhost:8080/book", formData).subscribe((res)=>{
+      alert("Book Added Successfully.");
       document.getElementById("closeBtn")?.dispatchEvent(new Event("click"));  
-      alert("Book added successfully.");
+      this.loadBooks();
     }, (error) => {
       console.log(error);
       alert("Something went wrong: " + error.name);
     });
+  }
+
+  //Book Details Modal
+  detailsModalOnInit(book:any):void {
+    this.bookModel = book;
+    this.imagePath = "http://localhost:8080" + book.image;
+    this.bookForm.controls.image.setValue("True");
+  }
+
+  onUpdate():void {
+    const formData:FormData = new FormData();
+    formData.append("book", JSON.stringify(this.bookModel));
+    formData.append("image", this.imageFile);
     
+    this.http.put("http://localhost:8080/book", formData).subscribe((res) => {
+      alert("Book Details Updated Successfully.");
+      document.getElementById("detailModalcloseBtn")?.dispatchEvent(new Event("click"));
+      this.loadBooks();
+    },(error)=>{
+      alert("Something went wrong: " + error.name);
+    });
+  }
+
+  onDelete():void {
+    if(confirm("Are you sure to delete this book?")){
+      this.http.delete(`http://localhost:8080/book?id=${this.bookModel.id}`).subscribe((res) => {
+        alert("Book Details Deleted Successfully.");
+        document.getElementById("detailModalcloseBtn")?.dispatchEvent(new Event("click"));
+        this.loadBooks();
+      },(error)=>{
+        alert("Something went wrong: " + error.name);
+      });
+    }
   }
 }
 

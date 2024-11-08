@@ -115,11 +115,6 @@ a.active{
     cursor: pointer;
 }
 
-.form-control:focus{
-    border-color: var(--primary-color);
-    box-shadow:  0 0 0 5px #11d57042;
-}
-
 .modal img, .modal button{
     justify-self: center;
 }

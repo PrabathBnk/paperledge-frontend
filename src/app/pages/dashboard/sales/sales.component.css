@@ -68,7 +68,7 @@
 }
 
 #addNewBook .modal-body{
-    padding: 0 2rem 2rem;
+    padding: 0 2rem;
 }
 
 /*Remove Arraw of Number Input*/
@@ -105,6 +105,11 @@ input[type=number]{
 .image-container{
     overflow: hidden;
     height: 12rem;
-    background-color: var(--white-shade-2);
+    border: 1px solid var(--white-shade-2);
     border-radius: 0.8rem;
+}
+
+.info p{
+    font-size: 0.8rem;
+    color: var(--black-shade-4);
 }

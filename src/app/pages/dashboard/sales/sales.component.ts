@@ -1,17 +1,49 @@
-import { NgFor } from '@angular/common';
+import { NgClass } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sales',
   standalone: true,
-  imports: [NgFor],
+  imports: [ReactiveFormsModule],
   templateUrl: './sales.component.html',
   styleUrl: './sales.component.css'
 })
 export class SalesComponent {
-  public currentYear = new Date().getFullYear();
-  public image:any;
+  //TODO Set Genres
 
+  public imageFieldText = "Upload image for your book. Make sure it is less than 5MB.";
+  public imageFile:any = null;
+  public imagePath:String = "";
+
+  public bookModel = {
+      id : null,
+      title: null,
+      isbn: null,
+      price: null,
+      discount: null,
+      year: null,
+      quantity: null,
+      mode: null,
+      description: null,
+      genre: {
+        id: null
+      },
+      author: {
+        name: null
+      },
+      publication: {
+        name: null
+      },
+      ownerUser: {
+        id: "PL240001"
+      }
+  }
+
+  constructor(private http: HttpClient) {}
+
+  //Set image to the image view
   setImage(event: Event):void {
     if((event.target as HTMLInputElement).files == null) {
       alert("Something went wrong!");
@@ -19,8 +51,88 @@ export class SalesComponent {
     } 
     
     const input = event.target as HTMLInputElement;
-    this.image = input.files?.item(0);
-    
+    this.imageFile = input.files?.item(0);
+
+    if ((this.imageFile.size/1024) > 5120) {
+      alert("File should be less than 5MB");
+      this.imageFile = null;
+      return;
+    }
+
+    this.imageFieldText = this.imageFile.name;
+    this.imagePath = URL.createObjectURL(this.imageFile);
+
+    this.bookForm.controls.image.setValue("True");
+  }
+
+  //Clear Fields on close
+  public clearFields():void{
+    this.imageFile = null;
+    this.imagePath = "";
+    this.imageFieldText = "Upload image for your book. Make sure it is less than 5MB.";
+    this.bookModel = {
+      id : null,
+      title: null,
+      isbn: null,
+      price: null,
+      discount: null,
+      year: null,
+      quantity: null,
+      mode: null,
+      description: null,
+      genre: {
+        id: null
+      },
+      author: {
+        name: null
+      },
+      publication: {
+        name: null
+      },
+      ownerUser: {
+        id: "PL240001"
+      }
+    }
+  }
+
+  //Form Control
+  public bookForm = new FormGroup({
+    title: new FormControl(this.bookModel.title, Validators.required),
+    isbn: new FormControl(this.bookModel.isbn, Validators.required),
+    genre: new FormControl(this.bookModel.genre.id, Validators.required),
+    author: new FormControl(this.bookModel.author.name, Validators.required),
+    publication: new FormControl(this.bookModel.publication.name, Validators.required),
+    year: new FormControl(this.bookModel.year, [
+      Validators.required,
+      Validators.min(1800),
+      Validators.max(new Date().getFullYear())
+    ]),
+    price: new FormControl(this.bookModel.price, Validators.required),
+    discount: new FormControl(this.bookModel.discount),
+    mode: new FormControl(this.bookModel.mode, Validators.required),
+    quantity: new FormControl(this.bookModel.quantity, [
+      Validators.required,
+      Validators.min(1)
+    ]),
+    description: new FormControl(this.bookModel.description),
+    image: new FormControl("", Validators.required)
+  });
+
+  
+  onSubmit():void {
+    const formData:FormData = new FormData();
+    formData.append("book", JSON.stringify(this.bookModel));
+    formData.append("image", this.imageFile);
+
+    this.http.post("http://localhost:8080/book", formData).subscribe((res)=>{
+      document.getElementById("closeBtn")?.dispatchEvent(new Event("click"));  
+      alert("Book added successfully.");
+    }, (error) => {
+      console.log(error);
+      alert("Something went wrong: " + error.name);
+    });
     
   }
 }
+
+

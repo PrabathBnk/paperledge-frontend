@@ -92,6 +92,11 @@
     box-shadow: 0 0 0 3px #33db8a6b;
 }
 
+.form-control:focus, .form-select:focus{
+    border-color: var(--primary-color) !important;
+    box-shadow:  0 0 0 5px #11d57042 !important;
+}
+
 /* Order Status */
 .order-satatus{
     font-size: 0.8rem;

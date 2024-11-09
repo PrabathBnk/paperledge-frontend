@@ -1,6 +1,7 @@
 import { NgClass, NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookShowcaseComponent } from '../../../common/book-showcase/book-showcase.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-browse',
@@ -9,19 +10,17 @@ import { BookShowcaseComponent } from '../../../common/book-showcase/book-showca
   templateUrl: './browse.component.html',
   styleUrl: './browse.component.css'
 })
-export class BrowseComponent {
-  public sampleBook:any = {
-    name: "Papers Have What You Want",
-    rating: 4.9,
-    genre: "Education",
-    year: 2024,
-    price: 2500.0,
-    oldPrice: 3000.0,
-    imgPath: "assets/images/sample-book-cover.png"
-  }
-
-  public iterate:number[] = [1,2,3,4,5,6,7,8,9,10,11,12];
+export class BrowseComponent implements OnInit{
+  public bookList:any;
   public selectedRating:string = "";
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.http.get("http://localhost:8080/book/all").subscribe((res) => {
+      this.bookList = res;
+    });
+  }
 
   changeSelectedRating(rating:string):void{
     this.selectedRating = rating;

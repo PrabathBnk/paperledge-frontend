@@ -2,6 +2,7 @@
     background-color: #eef1f5;
     border-radius: 0.7rem;
     transition: transform 0.3s;
+    height: 100%;
 }
 
 .main-container:hover{
@@ -11,6 +12,7 @@
 .img-container{
     background-color: #c3c9d1;
     border-radius: 1rem;
+    height: 70%;
 }
 
 .img-container img{
@@ -42,11 +44,28 @@
     width: fit-content;
 }
 
-.price p:first-child{
-    font-size: 1.2rem;
-}
-
 .price p:last-child{
     font-size: 0.8rem;
     color: var(--black-shade-4);
+}
+
+.price p:first-child{
+    font-size: 1.2rem;
+    color: var(--primary-black);
+}
+
+.details div:first-child{
+    width: 70%;
+}
+
+.details div:last-child{
+    width: 30%;
+}
+
+.details-container{
+    height: 28%;
+}
+
+.details{
+    height: 75%;
 }

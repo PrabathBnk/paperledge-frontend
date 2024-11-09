@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookShowcaseComponent } from '../../../common/book-showcase/book-showcase.component';
 import { NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-main',
@@ -10,9 +11,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
-export class MainComponent {
-  public categoryLit:string[] = ["Sinhala", "English", "Fiction", "Historical", "Educationl", "Novel", "Short Story", "Mystery", "Fantacy","Thriller"];
-
+export class MainComponent implements OnInit{
   public categoryList:any =[
     {
       name: "Sinhala",
@@ -59,6 +58,19 @@ export class MainComponent {
       color: "9a031e",
     }
   ]
+  public allBookList:any;
+  public bookList:any[] = [];
+
+  constructor(private http: HttpClient){}
+
+  ngOnInit(): void {
+    this.http.get("http://localhost:8080/book/all").subscribe((res) => {
+      this.allBookList = res;
+      this.bookList = this.allBookList.slice(0, 6);
+    });
+  }
+
+
 
   public sampleBook:any = {
     name: "Papers Have What You Want",
@@ -71,4 +83,7 @@ export class MainComponent {
   }
 
   public iterate:number[] = [1,2,3,4,5,6];
+
+
+
 }

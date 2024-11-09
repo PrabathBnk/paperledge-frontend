@@ -16,6 +16,7 @@ export class SalesComponent implements OnInit{
   public imagePath:String = "";
   public genreList:any;
   public userBookList:any;
+  public outOfStock:number = 0;
 
   public empptyBookModel:any = {
     id : null,
@@ -57,7 +58,15 @@ export class SalesComponent implements OnInit{
   loadBooks():void {
       this.http.get("http://localhost:8080/book/filter/owner-user?ownerUserId=PL240001").subscribe((res) => {
         this.userBookList = res;
+        this.countOutOfStock(this.userBookList);
+        
       });
+  }
+
+  countOutOfStock(bookList:any[]):void {
+    bookList.forEach((book:any) => {
+      if(book.quantity == 0) this.outOfStock++
+    });
   }
 
   //Set image to the image view
@@ -88,6 +97,7 @@ export class SalesComponent implements OnInit{
     this.imagePath = "";
     this.imageFieldText = "Upload image for your book. Make sure it is less than 5MB.";
     this.bookModel = this.empptyBookModel;
+    this.bookForm.reset();
   }
 
   //Form Control
@@ -120,7 +130,8 @@ export class SalesComponent implements OnInit{
 
     this.http.post("http://localhost:8080/book", formData).subscribe((res)=>{
       alert("Book Added Successfully.");
-      document.getElementById("closeBtn")?.dispatchEvent(new Event("click"));  
+      document.getElementById("closeBtn")?.dispatchEvent(new Event("click"));
+      this.clearFields();
       this.loadBooks();
     }, (error) => {
       console.log(error);
@@ -131,7 +142,7 @@ export class SalesComponent implements OnInit{
   //Book Details Modal
   detailsModalOnInit(book:any):void {
     this.bookModel = book;
-    this.imagePath = "http://localhost:8080" + book.image;
+    this.imagePath = "http://localhost:8080/" + book.image;
     this.bookForm.controls.image.setValue("True");
   }
 

@@ -128,3 +128,40 @@ form {
     --bs-form-valid-border-color: var(--primary-color);
 }
 /* End log in modal styles */
+
+/* Alert Danger */
+.alert-danger {
+    height: 2.5rem;
+    background-color: #ffe1e8;
+    color: #c9163d;
+    animation: alert 0.2s;
+}
+
+#loginModal .alert-danger{
+    transform: translateY(-4rem);
+}
+
+#signUpModal .alert-danger{
+    transform: translateY(-2.5rem);
+}
+
+.alert-danger i{
+    font-size: 1.2rem;
+}
+
+.alert-danger div{
+    font-size: 0.8rem;
+}
+
+.invalid-feedback{
+    font-size: 0.8rem;
+}
+
+@keyframes alert {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}

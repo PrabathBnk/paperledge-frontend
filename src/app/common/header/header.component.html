@@ -23,13 +23,14 @@
                 </div>
                 <div class="dropdown">
                     <div class="rounded-circle ms-3 overflow-hidden profile-img-container"  data-bs-toggle="dropdown">
-                        <img class="w-100" src="assets/images/sample-user-01.jpg" alt="">
+                        <img class="w-100" src="http://localhost:8080/{{profilePicture}}" alt="">
                     </div>
                     <ul class="dropdown-menu position-absolute">
                       <li><a class="dropdown-item" [ngClass]="{ 'active': isActive('user-details') }" href="#" routerLink="dashboard/user-details"><i class="fa-regular fa-user me-2"></i> User Details</a></li>
                       <li><a class="dropdown-item" [ngClass]="{ 'active': isActive('purchases') }" href="#" routerLink="dashboard/purchases"><i class="bi bi-bag me-2"></i> Purchases</a></li>
-                      <li><a class="dropdown-item" [ngClass]="{ active: isActive('sales') }" routerLink="../dashboard/sales" href="#"><i class="bi bi-currency-dollar me-2"></i>Sales</a></li>
+                      <li><a class="dropdown-item" [ngClass]="{ 'active' : isActive('sales') }" routerLink="../dashboard/sales" href="#"><i class="bi bi-currency-dollar me-2"></i>Sales</a></li>
                       <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i> Setting</a></li>
+                      <li><a class="dropdown-item" href="" (click)="logout()"><i class="bi bi-box-arrow-left me-2"></i> Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -41,22 +42,26 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header border-bottom-0">
-                <button type="button" class="btn-close me-1 mt-1" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close me-1 mt-1" data-bs-dismiss="modal" id="modalColseBtn" aria-label="Close"></button>
             </div>
             <div class="modal-body col-6 align-self-center d-grid">
+                <div class="alert alert-danger d-flex align-items-center position-absolute" *ngIf="!logingSuccess"  role="alert">
+                    <i class="bi bi-exclamation-triangle pe-2"></i>
+                    <div>Login unsuccessful! Please check your credentials and try again.</div>
+                </div>
                 <img class="w-50 mb-5" src="assets/images/logo-1.png" alt="">
                 <div class="mb-4">
                     <h3 class="fw-semibold text-center mb-4">Log in to your Account</h3>
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com" [(ngModel)]="credentials.email">
                         <label for="email">Email address</label>
                     </div>
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <input type="password" class="form-control" id="password" placeholder="Password" [(ngModel)]="credentials.password">
                         <label for="password">Password</label>
                     </div>
                 </div>
-                <button class="btn primary-btn py-2 w-50" >Log in</button>
+                <button class="btn primary-btn py-2 w-50" (click)="logIn()">Log in</button>
                 <p class="text-center mt-2 text-link">Forgot Password?</p>
                 <p class="text-link-2 text-center mt-4">Don't have an account? <span class="fw-medium " data-bs-target="#signUpModal" data-bs-toggle="modal">Create an account</span></p>
             </div>
@@ -64,45 +69,55 @@
     </div>
 </div>
 <!-- Sign up Modal -->
-<div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="signUpModalTitle" aria-hidden="true">
+<div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="signUpModalTitle" aria-hidden="false">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header border-bottom-0">
                 <button type="button" class="btn-close me-1 mt-1" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body mb-5 col-6 align-self-center d-grid">
+                <div class="alert alert-danger d-flex align-items-center position-absolute d-block" *ngIf="isSignupUnsuccess"  role="alert">
+                    <i class="bi bi-exclamation-triangle pe-2"></i>
+                    <div>{{signupModalAlert}}</div>
+                </div>
                 <img class="w-50 mb-5" src="assets/images/logo-1.png" alt="">
                 <div class="mb-4">
-                    <form action="" class="">
+                    <form action="" class="" [formGroup]="signupForm">
                         <h3 class="fw-semibold text-center mb-4">Create a New Account</h3>
                         <div class="d-flex">
                             <div class="form-floating w-50 mb-3">
-                                <input type="text" class="form-control" id="firstName" placeholder="your first name">
+                                <input type="text" class="form-control" id="firstName" placeholder="your first name" formControlName="firstname" [ngClass]="{'is-invalid': isValidated && signupForm.controls['firstname'].invalid}">
                                 <label for="firstName">First Name</label>
                             </div>
                             <div class="form-floating ms-2 w-50 mb-3">
-                                <input type="text" class="form-control" id="lastName" placeholder="your last name">
+                                <input type="text" class="form-control" id="lastName" placeholder="your last name" formControlName="lastname" [ngClass]="{'is-invalid': isValidated && signupForm.controls['lastname'].invalid}">
                                 <label for="lastName">Last Name</label>
                             </div>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="email" placeholder="your email">
+                            <input type="text" class="form-control" id="username" placeholder="your username" formControlName="username" [ngClass]="{'is-invalid': isValidated && (signupForm.controls['username'].invalid || isInValidUserName)}">
+                            <label for="username">Username</label>
+                            <div class="invalid-feedback" [ngClass]="{'d-none': !signupForm.controls['username'].invalid}" >Username should be contain more than 6 characters.</div>
+                            <div class="invalid-feedback" [ngClass]="{'d-none': !isInValidUserName}" >This username already exists.</div>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control" id="email" placeholder="your email" formControlName="email" [ngClass]="{'is-invalid': isValidated && signupForm.controls['email'].invalid}">
                             <label for="email">Email address</label>
                         </div>
-                        <!-- Use 'is-invaid' for invalid input fields -->
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="password" placeholder="your password">
+                            <input type="password" class="form-control" [ngClass]="{'is-invalid': isValidated && signupForm.controls['password'].invalid || isInValidPassword}" id="password" placeholder="your password"  formControlName="password">
                             <label for="password">Password</label>
+                            <div class="invalid-feedback">Password should contain more than 8 characters with one letter, one number and one special character.</div> 
                         </div>
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="confirmPassword" placeholder="confirm your password">
-                            <label for="confirmPassword">Confirm Password</label>
-                            <div class="invalid-tooltip">Passwords are not matching.</div>                  
+                            <input type="password" class="form-control" [ngClass]="{'is-invalid': isPasswordNotMatch}" id="confirmPassword"  placeholder="confirm your password" formControlName="confirm">
+                            <label for="confirmPassword" >Confirm Password</label>
+                            <div class="invalid-feedback">Passwords are not matching.</div>                  
                         </div>
                     </form>
                 </div>
-                <button class="btn primary-btn mt-2 py-2 w-50" type="submit" >Sign up</button>
-                <p class="text-link-2 text-center mt-4">Already have an account? <span class="fw-medium" data-bs-target="#loginModal" data-bs-toggle="modal">Log in to your account</span></p>
+                <button class="btn primary-btn mt-2 py-2 w-50" type="submit" (click)="signup()" >Sign up</button>
+                <p class="text-link-2 text-center mt-4">Already have an account? <span class="fw-medium" data-bs-target="#loginModal" id="toLoginModal" data-bs-toggle="modal">Log in to your account</span></p>
             </div>
         </div>
     </div>

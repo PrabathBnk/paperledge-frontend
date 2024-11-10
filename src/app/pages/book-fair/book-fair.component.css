@@ -41,3 +41,8 @@
     margin-left: 0.8rem;
     margin-top: 0.4rem;
 }
+
+/* Cart Modal */
+.modal-dialog{
+    max-width: 65vw;
+}

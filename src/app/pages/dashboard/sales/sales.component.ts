@@ -17,6 +17,9 @@ export class SalesComponent implements OnInit{
   public genreList:any;
   public userBookList:any;
   public outOfStock:number = 0;
+  public ordersList:any[] = [];
+  public user:any;
+  public totalRevenue:any;
 
   public empptyBookModel:any = {
     id : null,
@@ -51,22 +54,45 @@ export class SalesComponent implements OnInit{
       this.genreList = res;
     });
 
-    //Get all books by the user
+    this.user = localStorage.getItem("user");;
+    this.user = JSON.parse(this.user);
+
     this.loadBooks();
+    this.loadOrders();
   }
 
   loadBooks():void {
-      this.http.get("http://localhost:8080/book/filter/owner-user?ownerUserId=PL240001").subscribe((res) => {
-        this.userBookList = res;
-        this.countOutOfStock(this.userBookList);
-        
-      });
+    this.http.get(`http://localhost:8080/book/filter/owner-user?ownerUserId=${this.user.id}`).subscribe((res) => {
+      this.userBookList = res;
+      this.countOutOfStock(this.userBookList);
+    });
+  }
+
+  loadOrders():void {
+    this.http.get<any[]>(`http://localhost:8080/order/all/by-owner-user-id?id=${this.user.id}`).subscribe((res) => {
+      this.ordersList = res;
+      this.calcTotalRevenue();
+    });
   }
 
   countOutOfStock(bookList:any[]):void {
     bookList.forEach((book:any) => {
       if(book.quantity == 0) this.outOfStock++
     });
+  }
+
+  calcTotalRevenue(){
+    let total:number = 0;
+    for (let order of this.ordersList){
+      total += order.netToal;
+    }
+    if(total >= 1000000){
+      this.totalRevenue = (total/1000000).toFixed(1) + "M";
+    } else if (total >= 1000){
+      this.totalRevenue = (total/1000).toFixed(1) + "K";
+    } else {
+      this.totalRevenue = total;
+    }
   }
 
   //Set image to the image view

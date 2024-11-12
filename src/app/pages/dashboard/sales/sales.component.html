@@ -3,24 +3,24 @@
     <div class="row">
         <div class="sub-container pt-2 pb-3 px-4">
             <p class="fw-medium heading">Balance</p>
-            <p class="description">The total balance is available in your account. You can be withdrawn if it exceeds LKR 2000.</p>
-            <p class="fw-semibold amount">LKR 000</p>
+            <p class="description">The total balance is available in your account. You can be withdrawn if it exceeds LKR 5000.</p>
+            <p class="fw-semibold amount">LKR {{totalRevenue}}</p>
             <button class="btn mt-3 primary-btn">Withdraw</button>
         </div>
         <div class="sub-container container-2 pt-4 pb-3 ms-5 px-4">
             <p class="fw-medium heading">Total Orders</p>
             <p class="description">Total number of orders within the month.</p>
             <div class="d-flex align-items-center">
-                <p class="fw-semibold amount">05</p>
-                <i class="bi bi-arrow-up-circle ms-2"></i>
+                <p class="fw-semibold amount">{{ordersList.length}}</p>
+                <i class="bi bi-arrow-up-circle ms-2" [hidden]="ordersList.length == 0"></i>
             </div>
         </div>
         <div class="sub-container container-2 pt-4 pb-3 ms-2 px-4">
-            <p class="fw-medium heading">Total Revenue</p>
+            <p class="fw-medium heading">Total Revenue (LKR)</p>
             <p class="description">Total revenue within the month</p>
             <div class="d-flex align-items-center">
-                <p class="fw-semibold amount">LKR 000</p>
-                <i class="bi bi-arrow-up-circle ms-2"></i>
+                <p class="fw-semibold amount">{{totalRevenue}}</p>
+                <i class="bi bi-arrow-up-circle ms-2" [hidden]="ordersList.length == 0"></i>
             </div>
         </div>
         <div class="sub-container container-2 pt-4 pb-3 ms-2 px-4">
@@ -48,11 +48,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>#OR240123456</td>
-                        <td>2024 JAN 05</td>
-                        <td>2024 JAN 08 - 2024 JAN 15</td>
-                        <td>LKR.000.00</td>
+                    <tr *ngFor="let order of ordersList">
+                        <td>#{{order.id}}</td>
+                        <td>{{order.date}}</td>
+                        <td>{{order.estimatedDeliveryDate}}</td>
+                        <td>LKR.{{order.netTotal.toFixed(2)}}</td>
                     </tr>
                 </tbody>
             </table>

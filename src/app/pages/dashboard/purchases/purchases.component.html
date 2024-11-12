@@ -38,25 +38,22 @@
             <thead>
                 <tr>
                     <th width="15%">Order ID</th>
-                    <th width="20%">Seller’s Name</th>
-                    <th width="10%">Order Date</th>
-                    <th width="10%">Delivered Date</th>
+                    <th width="15%">Order Date</th>
+                    <th width="15%">Estimate Deliivery Date</th>
                     <th width="10%">Total Books</th>
                     <th width="15%">Total Amount</th>
                     <th width="15%">Status</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>#OR240123456</td>
-                    <td>Sample Seller Name</td>
-                    <td>2024 JAN 01</td>
-                    <td>-</td>
-                    <td class="ps-3 text-center">2</td>
-                    <td>LKR.000.00</td>
-                    <td><div class="order-satatus {{orderStatus.toLowerCase()}}">{{orderStatus}}</div></td>
+                <tr *ngFor="let order of ordersList.reverse()">
+                    <td>#{{order.id}}</td>
+                    <td>{{order.date}}</td>
+                    <td>{{order.estimatedDeliveryDate != null ? order.estimatedDeliveryDate: "-"}}</td>
+                    <td class="ps-3 text-center">{{order.orderDetails.length}}</td>
+                    <td>LKR.{{order.netTotal}}</td>
+                    <td><div class="order-satatus {{order.status.name.toLowerCase()}}">{{order.status.name}}</div></td>
                 </tr>
-                
             </tbody>
         </table>
 

@@ -6,15 +6,15 @@
                 <button class="btn outline-btn">View All <i class="fa-solid fa-chevron-right ps-2"></i></button>
             </div>
             <div class="content py-3">
-                <div class="mx-1 px-3 py-3 mb-3 order d-flex justify-content-between">
+                <div class="mx-1 px-3 py-3 mb-3 order d-flex justify-content-between" *ngFor="let order of inprogessOrders.reverse()">
                     <div>
-                        <p class="fw-medium" id="orderId">Order ID <span>#OR240123456</span></p>
-                        <p id="orderDate">Order Date <span class="ms-1">2024 JAN 01</span></p>
-                        <p id="estDate">Estimated Delivery Dates <span class="ms-1 fw-medium">2024 JAN 06 - 2024 JAN 12</span></p>
+                        <p class="fw-medium" id="orderId">Order ID <span>#{{order.id}}</span></p>
+                        <p id="orderDate">Order Date <span class="ms-1">{{order.date}}</span></p>
+                        <p id="estDate">Estimated Delivery Dates <span class="ms-1 fw-medium">{{order.estimatedDeliveryDate != null ? order.estimatedDeliveryDate: "-"}}</span></p>
                     </div>
                     <div class="text-end d-grid">
-                        <p class="order-satatus align-self-baseline placed">Placed</p>
-                        <p id="price" class="fw-semibold align-self-end">LKR.0000.00</p>
+                        <p class="order-satatus align-self-baseline {{order.status.name.toLowerCase()}}">{{order.status.name}}</p>
+                        <p id="price" class="fw-semibold align-self-end">LKR.{{order.netTotal.toFixed(2)}}</p>
                     </div>
                 </div>
             </div>
@@ -33,19 +33,19 @@
             <h5 class="text-center fw-semibold mt-2 mb-3">General Paperledger</h5>
             <div class="rounded-circle profile-picture">
                 <div class="position-absolute rounded-circle edit-overlay d-flex justify-content-center align-items-center"><i class="fa-solid fa-pencil"></i></div>
-                <img class="w-100" src="assets/images/sample-user-01.jpg" alt="">
+                <img class="w-100" src="http://localhost:8080/{{user.profilePicture}}" alt="">
             </div>
             <div class="text-center mt-4">
-                <p id="name" class="fw-medium m-0">Andrew Ferguson</p>
-                <p id="username">andrewferguson</p>
+                <p id="name" class="fw-medium m-0">{{user.name}}</p>
+                <p id="username">{{user.username}}</p>
             </div>
             <div class="d-flex account-details justify-content-center">
                 <div class="pe-4">
-                    <p class="number">25K</p>
+                    <p class="number">00</p>
                     <p>Followers</p>
                 </div>
                 <div class="ps-4">
-                    <p class="number">255</p>
+                    <p class="number">00</p>
                     <p>Posts</p>
                 </div>
             </div>
@@ -54,15 +54,15 @@
                     <tbody>
                         <tr>
                             <td>Email Address</td>
-                            <td>andrewfergusongmail.com</td>
+                            <td>{{user.email}}</td>
                         </tr>
                         <tr>
                             <td>Phone Number</td>
-                            <td>+947610203040</td>
+                            <td>{{user.contactNumber != null ? user.contactNumber: "-"}}</td>
                         </tr>
                         <tr>
                             <td>Created Date</td>
-                            <td>2000 January 01</td>
+                            <td>{{user.createdDate}}</td>
                         </tr>
                     </tbody>
                 </table>

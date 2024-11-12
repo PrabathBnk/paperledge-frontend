@@ -1,6 +1,6 @@
 <div class="modal-header">
     <h5 class="m-0">Cart & Checkout</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" id="modalColseBtn" aria-label="Close"></button>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" id="orderModalColseBtn" aria-label="Close"></button>
 </div>
 <div class="modal-body w-100 px-5 pb-5 align-self-center d-grid">
     <div class="row g-5">
@@ -25,40 +25,40 @@
         </div>
         <div class="col-lg-7">
           <h4 class="mb-3">Billing address</h4>
-          <form class="needs-validation" novalidate="">
+          <form class="needs-validation" novalidate="" [formGroup]="orderFormGroup">
             <div class="row g-3">
               <div class="col-12">
-                <label for="address" class="form-label">Address</label>
-                <input type="text" class="form-control" id="address" placeholder="Street / Number" required="">
+                <label for="address" class="form-label">Address <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="address" placeholder="Street / Number" required="" formControlName="addressLine1">
                 <div class="invalid-feedback">
                   Please enter your shipping address.
                 </div>
               </div>
   
               <div class="col-12">
-                <label for="address2" class="form-label">Address 2 <span class="text-body-secondary">(Optional)</span></label>
-                <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                <label for="address2" class="form-label">Address 2 <span class="text-body-secondary">(Optional)</span><span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="address2" placeholder="Apartment or suite" formControlName="addressLine2">
               </div>
   
               <div class="col-md-5">
-                <label for="country" class="form-label">Country</label>
-                <input type="text" class="form-control" id="country" placeholder="">
+                <label for="country" class="form-label">Country <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="country" placeholder="" formControlName="country">
                 <div class="invalid-feedback">
                   Please select a valid country.
                 </div>
               </div>
   
               <div class="col-md-4">
-                <label for="province" class="form-label">Province</label>
-                <input type="text" class="form-control" id="province" placeholder="">
+                <label for="province" class="form-label">Province <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="province" placeholder="" formControlName="province">
                 <div class="invalid-feedback">
                   Please provide a valid state.
                 </div>
               </div>
   
               <div class="col-md-3">
-                <label for="zip" class="form-label">Zip</label>
-                <input type="text" class="form-control" id="zip" placeholder="" required="">
+                <label for="zip" class="form-label">Postal Code <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="zip" placeholder="" required="" formControlName="postalCode">
                 <div class="invalid-feedback">
                   Zip code required.
                 </div>
@@ -69,24 +69,16 @@
             <h4 class="mb-3">Payment</h4>
   
             <div class="my-3">
-              <div class="form-check">
-                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked="" required="">
-                <label class="form-check-label" for="credit">Credit card</label>
-              </div>
-              <div class="form-check">
-                <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required="">
-                <label class="form-check-label" for="debit">Debit card</label>
-              </div>
-              <div class="form-check">
-                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required="">
-                <label class="form-check-label" for="paypal">PayPal</label>
+              <div class="form-check" *ngFor="let paymentMethod of paymentMethods">
+                <input [id]="paymentMethod.name" name="paymentMethod" type="radio" [value]="paymentMethod.name" class="form-check-input" checked="" (change)="paymentMethodOnChange()" required="" formControlName="paymentMethod">
+                <label class="form-check-label" for="{{paymentMethod.name}}">{{paymentMethod.name}}</label>
               </div>
             </div>
   
-            <div class="row gy-3">
+            <div class="row gy-3" [ngClass]="{ 'opacity-50': isCardPayment }">
               <div class="col-md-6">
                 <label for="cc-name" class="form-label">Name on card</label>
-                <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+                <input type="text" class="form-control" id="cc-name" placeholder="" required="" [disabled]="isCardPayment">
                 <small class="text-body-secondary">Full name as displayed on card</small>
                 <div class="invalid-feedback">
                   Name on card is required
@@ -95,7 +87,7 @@
   
               <div class="col-md-6">
                 <label for="cc-number" class="form-label">Credit card number</label>
-                <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+                <input type="text" class="form-control" id="cc-number" placeholder="" required="" [disabled]="isCardPayment">
                 <div class="invalid-feedback">
                   Credit card number is required
                 </div>
@@ -103,7 +95,7 @@
   
               <div class="col-md-3">
                 <label for="cc-expiration" class="form-label">Expiration</label>
-                <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+                <input type="text" class="form-control" id="cc-expiration" placeholder="" required="" [disabled]="isCardPayment">
                 <div class="invalid-feedback">
                   Expiration date required
                 </div>
@@ -111,7 +103,7 @@
   
               <div class="col-md-3">
                 <label for="cc-cvv" class="form-label">CVV</label>
-                <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+                <input type="text" class="form-control" id="cc-cvv" placeholder="" required="" [disabled]="isCardPayment">
                 <div class="invalid-feedback">
                   Security code required
                 </div>
@@ -120,7 +112,7 @@
   
             <hr class="my-4">
           </form>
-          <button class="w-100 btn primary-btn btn-lg">Continue to checkout</button>
+          <button class="w-100 btn primary-btn btn-lg" (click)="onSubmit()" [disabled]="orderFormGroup.invalid">Place Order</button>
         </div>
     </div>
 </div>

@@ -5,3 +5,7 @@
 .qty-field input{
     border: 1px solid var(--black-shade-3);
 }
+
+.disble-div{
+    opacity: 0.6;
+}

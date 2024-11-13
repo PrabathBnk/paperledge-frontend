@@ -1,12 +1,12 @@
 import { NgFor } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-sales',
   standalone: true,
-  imports: [ReactiveFormsModule, NgFor],
+  imports: [FormsModule, ReactiveFormsModule, NgFor],
   templateUrl: './sales.component.html',
   styleUrl: './sales.component.css'
 })
@@ -20,6 +20,11 @@ export class SalesComponent implements OnInit{
   public ordersList:any[] = [];
   public user:any;
   public totalRevenue:any;
+  public viewOrder:any = {
+    netTotal: 0,
+    status: {},
+    user: {}
+  };
 
   public empptyBookModel:any = {
     id : null,
@@ -72,6 +77,8 @@ export class SalesComponent implements OnInit{
     this.http.get<any[]>(`http://localhost:8080/order/all/by-owner-user-id?id=${this.user.id}`).subscribe((res) => {
       this.ordersList = res;
       this.calcTotalRevenue();
+      console.log(this.ordersList);
+      
     });
   }
 
@@ -84,7 +91,7 @@ export class SalesComponent implements OnInit{
   calcTotalRevenue(){
     let total:number = 0;
     for (let order of this.ordersList){
-      total += order.netToal;
+      total += order.netTotal;
     }
     if(total >= 1000000){
       this.totalRevenue = (total/1000000).toFixed(1) + "M";
@@ -196,6 +203,45 @@ export class SalesComponent implements OnInit{
         alert("Something went wrong: " + error.name);
       });
     }
+  }
+
+  //View Order Modal Control
+  public today = new Date().toISOString().split('T')[0];
+  
+  public viewOrderForm = new FormGroup({
+    estDate: new FormControl(),
+    tracking: new FormControl(),
+    status: new FormControl()
+  })
+
+  onClickOrderField(order:any){
+    this.viewOrder = order;
+    this.viewOrderForm.controls['estDate'].setValue(this.viewOrder.estimatedDeliveryDate);
+    this.viewOrderForm.controls['tracking'].setValue(this.viewOrder.trackingNumber);
+    this.viewOrderForm.controls['status'].setValue(this.viewOrder.status.name);
+  }
+
+  onUpdateOrder() {
+    if(this.viewOrder.status.name != this.viewOrderForm.value['status']){
+      this.http.put(`http://localhost:8080/order/status?id=${this.viewOrder.id}&status=${this.viewOrderForm.value['status']}`, {}).subscribe(res => {
+        this.closeViewOrderModal();
+      });
+    } else if(this.viewOrder.estimatedDeliveryDate != this.viewOrderForm.value['estDate']){
+      this.http.put(`http://localhost:8080/order/est-date?id=${this.viewOrder.id}&est-date=${this.viewOrderForm.value['estDate']}`, {}).subscribe(res => {
+        this.closeViewOrderModal();
+      });
+    } else if(this.viewOrder.trackingNumber != this.viewOrderForm.value['tracking']){
+      this.http.put(`http://localhost:8080/order/tracking?id=${this.viewOrder.id}&tracking=${this.viewOrderForm.value['tracking']}`, {}).subscribe(res => {
+        this.closeViewOrderModal();
+      });
+    }
+    this.loadOrders();
+  }
+
+  private closeViewOrderModal(){
+    alert("Order updated sucessfully.");
+    this.loadOrders();
+    document.getElementById("viewOrderBtnClose")?.dispatchEvent(new Event('click'));
   }
 }
 

@@ -131,3 +131,57 @@ input[type=number]{
 .delete-btn:hover{
     background-color: #ff5277 !important;
 }
+
+/* View Order Modal */
+#viewOrderModal .modal-dialog{
+    max-width: 50vw;
+}
+
+#viewOrderModal .modal-body{
+    padding-inline: 2rem;
+}
+
+.tracking-number{
+    width: 45%;
+}
+
+.orderTabel{
+    padding-inline: 2rem;
+}
+
+.orderTabel table{
+    table-layout: fixed;
+}
+
+.orderTabel thead th{
+    color: var(--black-shade-4);
+    font-weight: 500;
+}
+
+.orderTabel tbody td{
+    padding-block: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.orderTabel table th, .orderTabel table td{
+    padding-left: 2rem;
+}
+
+.cusomer-details p{
+    margin: 0;
+}
+
+.cusomer-details p:not(.fw-semibold){
+    padding-left: 1rem;
+    font-size: 0.9rem;
+}
+
+.cusomer-details, .otherOrderDetails{
+    width: fit-content;
+}
+
+#viewOrderModal .date-time{
+    font-size: 0.9rem;
+}

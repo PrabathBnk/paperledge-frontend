@@ -48,7 +48,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let order of ordersList">
+                    <tr *ngFor="let order of ordersList" data-bs-toggle="modal" data-bs-target="#viewOrderModal" (click)="onClickOrderField(order)">
                         <td>#{{order.id}}</td>
                         <td>{{order.date}}</td>
                         <td>{{order.estimatedDeliveryDate}}</td>
@@ -283,6 +283,82 @@
                 <button type="submit" class="btn primary-btn" (click)="onUpdate()" [disabled]="bookForm.invalid">Update</button>
                 <button type="submit" class="btn primary-btn delete-btn" (click)="onDelete()">Delete</button>
             </div>        
+        </div>
+    </div>
+</div>
+<!-- View Order Modal -->
+<div class="modal fade" id="viewOrderModal" tabindex="-1" aria-labelledby="viewOrderModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="m-0"><span class="pe-2">Order ID:</span>#{{viewOrder.id}}</h5>
+                <button type="button" class="btn-close" id="viewOrderBtnClose" data-bs-dismiss="modal" aria-label="Close" ></button>
+            </div>
+            <div class="modal-body col-6 w-100">
+                <div>
+                    <p class="text-body-tertiary pb-3 border-bottom date-time mb-4">Date: <span class="text-body-emphasis me-3">{{viewOrder.date}}</span> Time: <span class="text-body-emphasis">{{viewOrder.time}}</span></p>
+                    <form action="" [formGroup]="viewOrderForm">
+                        <div class="row">
+                            <div class="me-2 w-25">
+                                <label for="estimateDate" class="form-label">Estimate Delivery Date</label>
+                                <input type="date" class="form-control" min="{{today}}" id="estimateDate" placeholder="" formControlName="estDate">
+                            </div>
+                            <div class="me-2 tracking-number">
+                                <label for="trackingNumber" class="form-label">Tracking Number</label>
+                                <input type="number" class="form-control" id="trackingNumber" placeholder="" formControlName="tracking">
+                            </div>
+                            <div class="w-25">
+                                <label class="form-label">Status</label>
+                                <select class="form-select" formControlName="status">
+                                    <option value="Placed">Placed</option>
+                                    <option value="Shipped">Shipped</option>
+                                    <option value="Deliered">Deliered</option>
+                                    <option value="Returned">Returned</option>
+                                    <option value="Cancelled">Cancelled</option>
+                                </select>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="orderTabel mt-4 pt-2 pb-1">
+                        <table class="table w-100">
+                            <thead>
+                                <tr>
+                                    <th width="15%">Book ID</th>
+                                    <th width="30%">Title</th>
+                                    <th width="20%">Price</th>
+                                    <th width="15%">Quantity</th>
+                                    <th width="20%">Total Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let orderDeail of viewOrder.orderDetails">
+                                    <td>{{orderDeail.book.id}}</td>
+                                    <td>{{orderDeail.book.title}}</td>
+                                    <td>{{orderDeail.book.price.toFixed(2)}}</td>
+                                    <td>{{orderDeail.quantity}}</td>
+                                    <td>{{(orderDeail.book.price * orderDeail.quantity).toFixed(2)}}</td>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row justify-content-between mt-4">
+                        <div class="cusomer-details">
+                            <p class="fw-semibold">Customer Details</p>
+                            <p>{{viewOrder.user.name}}</p>
+                            <p>{{viewOrder.user.email}}</p>
+                            <p>{{viewOrder.user.addressLine1}}, {{viewOrder.user.addressLine2}}</p>
+                            <p>{{viewOrder.user.province}}, {{viewOrder.user.postalCode}}</p>
+                            <p>{{viewOrder.user.country}}</p>
+                        </div>
+                        <div class="otherOrderDetails me-3">
+                            <p><span class="fw-semibold me-2 ">Net Total:</span>LKR.{{(viewOrder.netTotal).toFixed(2)}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn outline-btn" id="detailModalcloseBtn" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn primary-btn" (click)="onUpdateOrder()" [disabled]="viewOrderForm.invalid">Update</button>
+            </div>   
         </div>
     </div>
 </div>

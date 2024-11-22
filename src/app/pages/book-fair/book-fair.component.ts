@@ -17,16 +17,14 @@ export class BookFairComponent implements OnInit{
   public searchBy:string = "title";
   public searchText:string = "";
   public cartItems:any = [];
+  public user:any;
 
   constructor(private http: HttpClient, private router: Router, private service: BookFairService) {}
 
   ngOnInit(): void {
-    let user:any = localStorage.getItem("user");
-     if (user != null){
-      this.http.get(`http://localhost:8080/cart/all?id=${JSON.parse(user).id}`).subscribe((res)=>{
-        this.cartItems = res;
-      })
-     }
+    this.user = localStorage.getItem("user");
+    this.user = JSON.parse(this.user);
+    if (this.user != null) this.updateCartList();
   }
 
   onSearch(){
@@ -45,5 +43,11 @@ export class BookFairComponent implements OnInit{
     }
 
     this.router.navigate(['/book-fair/browse']);
+  }
+
+  updateCartList(){
+    this.http.get(`http://localhost:8080/cart/all?id=${this.user.id}`).subscribe((res)=>{
+      this.cartItems = res;
+    })
   }
 }

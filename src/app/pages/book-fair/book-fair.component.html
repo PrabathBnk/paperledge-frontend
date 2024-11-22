@@ -14,7 +14,7 @@
         <button class="ms-2 btn outline-btn"><i class="bi bi-funnel"></i> Filter</button>
     </div>
     <div class="col-4 d-flex justify-content-end pe-4">
-        <button class="btn outline-btn px-3" data-bs-toggle="modal" data-bs-target="#cartDetailsModal"><div class="rounded-circle position-absolute cart-item-count" [ngClass]="{'d-none': cartItems == null || cartItems.length == 0}" id="cartNumber">{{cartItems.length}}</div><i class="fa-solid fa-cart-shopping"></i></button>
+        <button class="btn outline-btn px-3" (click)="updateCartList()" data-bs-toggle="modal" data-bs-target="#cartDetailsModal"><div class="rounded-circle position-absolute cart-item-count" [ngClass]="{'d-none': cartItems == null || cartItems.length == 0}" id="cartNumber">{{cartItems.length}}</div><i class="fa-solid fa-cart-shopping"></i></button>
         <button class="btn outline-btn ms-2 px-3"><i class="fa-solid fa-bookmark"></i></button>
     </div>
 </div>

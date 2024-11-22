@@ -26,13 +26,10 @@ export class BookShowcaseComponent implements OnInit{
   }
 
   addToCart() {
-    console.log("Clicked");
-    
     let user:any = localStorage.getItem("user");
     if(user == null){
       document.getElementById("loginBtn")?.dispatchEvent(new Event("click"));
     } else{
-      console.log(true);
       this.http.post("http://localhost:8080/cart", {
         user: {
           id: JSON.parse(user).id

@@ -1,7 +1,8 @@
 import { NgClass, NgFor } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { BookShowcaseComponent } from '../../../common/book-showcase/book-showcase.component';
 import { HttpClient } from '@angular/common/http';
+import { BookFairService } from '../book-fair.service';
 
 @Component({
   selector: 'app-browse',
@@ -14,12 +15,10 @@ export class BrowseComponent implements OnInit{
   public bookList:any;
   public selectedRating:string = "";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private service: BookFairService) {}
 
   ngOnInit(): void {
-    this.http.get("http://localhost:8080/book/all").subscribe((res) => {
-      this.bookList = res;
-    });
+    this.service.bookListFunc$.subscribe(bookList => this.bookList = bookList);
   }
 
   changeSelectedRating(rating:string):void{

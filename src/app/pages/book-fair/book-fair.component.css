@@ -21,6 +21,10 @@
     width: 20%;
 }
 
+.search-bar select:hover{
+    cursor: pointer;
+}
+
 .search-bar select:focus{
     outline: none;
 }

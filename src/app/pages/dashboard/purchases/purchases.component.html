@@ -1,28 +1,28 @@
 <div class="mx-5 mt-4">
     <h3 class="fw-semibold">Purchases</h3>
     <div class="row flex-nowrap">
-        <div class="d-flex align-items-center order-btn py-3 ps-4">
+        <div class="d-flex align-items-center order-btn py-3 ps-4" (click)="fillterByStatus('Placed')" [ngClass]="{ 'oreder-btn-hovered': checkedStatus == 'Placed' }">
             <div class="rounded-circle d-flex justify-content-center align-items-center"><i class="bi bi-truck"></i></div>
             <div class="ms-3">
                 <p class="m-0 fw-medium">To Ship</p>
                 <p class="m-0">The orders are awaiting for<br> shipment.</p>
             </div>
         </div>
-        <div class="d-flex align-items-center order-btn py-3 ps-4">
+        <div class="d-flex align-items-center order-btn py-3 ps-4" (click)="fillterByStatus('Shipped')" [ngClass]="{ 'oreder-btn-hovered': checkedStatus == 'Shipped' }">
             <div class="rounded-circle d-flex justify-content-center align-items-center"><i class="bi bi-box2"></i></div>
             <div class="ms-3">
                 <p class="m-0 fw-medium">To Receive</p>
                 <p class="m-0">Shipped orders are on their<br> way to you.</p>
             </div>
         </div>
-        <div class="d-flex align-items-center order-btn py-3 ps-4">
+        <div class="d-flex align-items-center order-btn py-3 ps-4" (click)="fillterByStatus('Delivered')" [ngClass]="{ 'oreder-btn-hovered': checkedStatus == 'Delivered' }">
             <div class="rounded-circle d-flex justify-content-center align-items-center"><i class="bi bi-chat-quote"></i></div>
             <div class="ms-3">
                 <p class="m-0 fw-medium">Review Needed</p>
                 <p class="m-0">Orders that are awaiting your<br> feedback.</p>
             </div>
         </div>
-        <div class="d-flex align-items-center order-btn py-3 ps-4">
+        <div class="d-flex align-items-center order-btn py-3 ps-4" (click)="fillterByStatus('Returned')" [ngClass]="{ 'oreder-btn-hovered': checkedStatus == 'Returned' }">
             <div class="rounded-circle d-flex justify-content-center align-items-center"><i class="bi bi-x-circle"></i></div>
             <div class="ms-3">
                 <p class="m-0 fw-medium">Returned & Cancelled</p>
@@ -32,7 +32,7 @@
     </div>
 </div>
 <div class="mx-5 mt-4">
-    <h5 class="fw-semibold">All Purchases</h5>
+    <h5 class="fw-semibold">All Purchases <span class="ms-2 reset-btn" (click)="resetTable()"><i class="bi bi-arrow-clockwise"></i></span></h5>
     <div class="tbl-section mb-4">
         <table>
             <thead>
@@ -46,7 +46,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let order of ordersList.reverse()">
+                <tr *ngFor="let order of ordersList">
                     <td>#{{order.id}}</td>
                     <td>{{order.date}}</td>
                     <td>{{order.estimatedDeliveryDate != null ? order.estimatedDeliveryDate: "-"}}</td>

@@ -34,8 +34,26 @@
     cursor: pointer;
 }
 
+.oreder-btn-hovered{
+    background-color: #C3F9DB;
+    cursor: pointer;
+}
+
 .order-satatus{
     font-size: 0.8rem !important;
     text-align: left;
     width: fit-content;
+}
+
+.reset-btn{
+    background-color: var(--white-shade-2);
+    padding-inline: 0.2rem;
+    border-radius: 0.5rem;
+    font-size: 0.95rem;
+    transition: background-color 0.2s;
+}
+
+.reset-btn:hover{
+    cursor: pointer;
+    background-color: var(--black-shade-5);
 }

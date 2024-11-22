@@ -6,9 +6,8 @@
         <div class="col-6 nav-bar d-flex justify-content-center">
             <ul class="m-0 p-0">
                 <li class="me-3" [ngClass]="{ 'active': isHomeActive() }"><a routerLink="">Home</a></li>
-                <li class="me-3" [ngClass]="{ 'active': isActive('book-fair') }"><a routerLink="book-fair">Book Fair</a>
-                </li>
-                <li><a routerLink="">Ledgers' Corner</a></li>
+                <li class="me-3" [ngClass]="{ 'active': isActive('book-fair') }"><a routerLink="book-fair">Book Fair</a></li>
+                <li [ngClass]="{ 'active': isActive('ledgers-corner') }"><a routerLink="ledgers-corner">Ledgers' Corner</a></li>
             </ul>
         </div>
         <div class="col-3 d-flex justify-content-end">

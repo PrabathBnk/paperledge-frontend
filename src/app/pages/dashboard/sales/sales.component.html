@@ -265,7 +265,7 @@
                                 <input type="file" class="d-none" id="imagePicker" accept=".png, .jpeg, .jpg" (change)="setImage($event)" >
                                 <label class="text-center d-flex flex-column h-100  pt-4" for="imagePicker" >
                                     <i class="bi bi-file-earmark-image"></i>
-                                    <p class="px-4">{{imageFieldText}}</p>
+                                    <p class="px-4 overflow-hidden ">{{imageFieldText}}</p>
                                 </label>
                             </div>
                             <div class="image-container d-flex justify-content-center ms-3 w-50 d-flex ">
@@ -312,7 +312,7 @@
                                 <select class="form-select" formControlName="status">
                                     <option value="Placed">Placed</option>
                                     <option value="Shipped">Shipped</option>
-                                    <option value="Deliered">Deliered</option>
+                                    <option value="Delivered">Delivered</option>
                                     <option value="Returned">Returned</option>
                                     <option value="Cancelled">Cancelled</option>
                                 </select>

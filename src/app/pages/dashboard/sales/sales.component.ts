@@ -77,8 +77,6 @@ export class SalesComponent implements OnInit{
     this.http.get<any[]>(`http://localhost:8080/order/all/by-owner-user-id?id=${this.user.id}`).subscribe((res) => {
       this.ordersList = res;
       this.calcTotalRevenue();
-      console.log(this.ordersList);
-      
     });
   }
 
@@ -221,21 +219,26 @@ export class SalesComponent implements OnInit{
     this.viewOrderForm.controls['status'].setValue(this.viewOrder.status.name);
   }
 
-  onUpdateOrder() {
+  async onUpdateOrder() {
+    let updateSuccess = true;
+
     if(this.viewOrder.status.name != this.viewOrderForm.value['status']){
-      this.http.put(`http://localhost:8080/order/status?id=${this.viewOrder.id}&status=${this.viewOrderForm.value['status']}`, {}).subscribe(res => {
-        this.closeViewOrderModal();
-      });
-    } else if(this.viewOrder.estimatedDeliveryDate != this.viewOrderForm.value['estDate']){
-      this.http.put(`http://localhost:8080/order/est-date?id=${this.viewOrder.id}&est-date=${this.viewOrderForm.value['estDate']}`, {}).subscribe(res => {
-        this.closeViewOrderModal();
-      });
-    } else if(this.viewOrder.trackingNumber != this.viewOrderForm.value['tracking']){
-      this.http.put(`http://localhost:8080/order/tracking?id=${this.viewOrder.id}&tracking=${this.viewOrderForm.value['tracking']}`, {}).subscribe(res => {
-        this.closeViewOrderModal();
-      });
+      this.http.put(`http://localhost:8080/order/status?id=${this.viewOrder.id}&status=${this.viewOrderForm.value['status']}`, {}).subscribe(res => {}, error => updateSuccess = false);
+    } 
+    
+    if(this.viewOrder.estimatedDeliveryDate != this.viewOrderForm.value['estDate']){
+      this.http.put(`http://localhost:8080/order/est-date?id=${this.viewOrder.id}&est-date=${this.viewOrderForm.value['estDate']}`, {}).subscribe(res => {}, error => updateSuccess = false);
+    } 
+    
+    if(this.viewOrder.trackingNumber != this.viewOrderForm.value['tracking']){
+      this.http.put(`http://localhost:8080/order/tracking?id=${this.viewOrder.id}&tracking=${this.viewOrderForm.value['tracking']}`, {}).subscribe(res => {}, error => updateSuccess = false);
     }
-    this.loadOrders();
+    
+    if(updateSuccess) {
+      this.closeViewOrderModal();
+    } else {
+      alert("Somehing went wrong!");
+    }
   }
 
   private closeViewOrderModal(){

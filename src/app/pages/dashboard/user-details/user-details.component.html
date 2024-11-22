@@ -3,10 +3,10 @@
         <div class="row sub-section purchases">
             <div class="d-flex justify-content-between mb-lg-2">
                 <h4 class="fw-semibold m-0">In Progress Purchases</h4>
-                <button class="btn outline-btn">View All <i class="fa-solid fa-chevron-right ps-2"></i></button>
+                <button class="btn outline-btn" routerLink="../purchases">View All <i class="fa-solid fa-chevron-right ps-2"></i></button>
             </div>
             <div class="content py-3">
-                <div class="mx-1 px-3 py-3 mb-3 order d-flex justify-content-between" *ngFor="let order of inprogessOrders.reverse()">
+                <div class="mx-1 px-3 py-3 mb-3 order d-flex justify-content-between" *ngFor="let order of inprogessOrders.reverse()" routerLink="../purchases">
                     <div>
                         <p class="fw-medium" id="orderId">Order ID <span>#{{order.id}}</span></p>
                         <p id="orderDate">Order Date <span class="ms-1">{{order.date}}</span></p>

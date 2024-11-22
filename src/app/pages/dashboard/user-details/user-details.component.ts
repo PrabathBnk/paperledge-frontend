@@ -1,11 +1,12 @@
 import { NgFor } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-user-details',
   standalone: true,
-  imports: [NgFor],
+  imports: [NgFor, RouterLink],
   templateUrl: './user-details.component.html',
   styleUrl: './user-details.component.css'
 })
@@ -26,7 +27,7 @@ export class UserDetailsComponent implements OnInit{
     this.http.get<any[]>(`http://localhost:8080/order/all/by-user-id?id=${this.user.id}`).subscribe(res => {
       this.inprogessOrders = res;
 
-      this.inprogessOrders = this.inprogessOrders.filter(order =>  order.status.name != 'Returned' && order.status.name != 'Cancelled');
+      this.inprogessOrders = this.inprogessOrders.filter(order =>  order.status.name != 'Returned' && order.status.name != 'Cancelled' && order.status.name != 'Delivered');
     });
   }
 }

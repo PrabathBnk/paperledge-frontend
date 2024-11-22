@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit{
 
   // Should change after creating the ledgers-corner component
   public isHomeActive():boolean{
-    return !this.isActive("book-fair") && !this.isActive("user-details") && !this.isActive("sales");
+    return !this.isActive("book-fair") && !this.isActive("ledgers-corner") && !this.isActive("user-details") && !this.isActive("sales");
   }
 
   public logIn(){

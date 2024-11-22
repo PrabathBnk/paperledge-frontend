@@ -7,6 +7,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UserDetailsComponent } from './pages/dashboard/user-details/user-details.component';
 import { PurchasesComponent } from './pages/dashboard/purchases/purchases.component';
 import { SalesComponent } from './pages/dashboard/sales/sales.component';
+import { LedgersCornerComponent } from './pages/ledgers-corner/ledgers-corner.component';
 
 export const routes: Routes = [
     {
@@ -50,5 +51,10 @@ export const routes: Routes = [
                 component: SalesComponent
             }
         ]
+    },
+    {
+        path: "ledgers-corner",
+        title: "Ledgers' Corner",
+        component: LedgersCornerComponent
     }
 ];

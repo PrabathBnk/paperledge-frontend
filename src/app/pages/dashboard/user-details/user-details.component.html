@@ -31,9 +31,12 @@
     <div class="col-4">
         <div class="user-detail-container d-grid mb py-4">
             <h5 class="text-center fw-semibold mt-2 mb-3">General Paperledger</h5>
-            <div class="rounded-circle profile-picture">
-                <div class="position-absolute rounded-circle edit-overlay d-flex justify-content-center align-items-center"><i class="fa-solid fa-pencil"></i></div>
-                <img class="w-100" src="http://localhost:8080/{{user.profilePicture}}" alt="">
+            <input class="d-none" type="file" name="" accept=".jpg, .png, .jpeg" id="profilePicture" (change)="updateProfilePictue($event)">
+            <div class="rounded-circle profile-picture" >
+                <label for="profilePicture">
+                    <div class="position-absolute rounded-circle edit-overlay d-flex justify-content-center align-items-center"><i class="fa-solid fa-pencil"></i></div>
+                    <img class="w-100" src="http://localhost:8080/{{user.profilePicture}}" alt="">
+                </label>
             </div>
             <div class="text-center mt-4">
                 <p id="name" class="fw-medium m-0">{{user.name}}</p>

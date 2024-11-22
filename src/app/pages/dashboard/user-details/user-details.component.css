@@ -132,4 +132,5 @@
 
 .profile-picture:hover .edit-overlay{
     opacity: 1;
+    cursor: pointer;
 }
